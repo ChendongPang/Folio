@@ -1,0 +1,597 @@
+{
+  "id": "TC02",
+  "name": "星屿生活全渠道订单中台需求规格说明书",
+  "document_type": "srs",
+  "output_title": "星屿生活全渠道订单中台需求规格说明书",
+  "output_filename": "星屿生活全渠道订单中台需求规格说明书.docx",
+  "target_chars": {
+    "min": 25000,
+    "max": 35000
+  },
+  "audience": [
+    "产品负责人",
+    "订单研发团队",
+    "库存支付团队",
+    "测试与运维团队"
+  ],
+  "focus": [
+    "多来源接口契约整合",
+    "支付与超时并发竞态",
+    "状态机和幂等",
+    "异步最终一致性",
+    "分摊舍入与部分退款",
+    "版本冲突",
+    "长规格书逐项可验收"
+  ],
+  "expected": {
+    "chapters": [
+      {
+        "title": "引言、术语与适用版本",
+        "min_chars": 1200,
+        "topics": [
+          "SRS读者",
+          "V1/V2区分",
+          "金额分与UTC"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "03_库存支付接口契约.docx",
+          "06_旧接口V1归档.md"
+        ]
+      },
+      {
+        "title": "业务范围与角色权限",
+        "min_chars": 1500,
+        "topics": [
+          "渠道及40店",
+          "单履约地点",
+          "权限隔离"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "07_页面及权限清单.md"
+        ]
+      },
+      {
+        "title": "领域模型与四组状态机",
+        "min_chars": 2300,
+        "topics": [
+          "订单支付履约退款",
+          "合法与非法迁移",
+          "组合展示"
+        ],
+        "source_paths": [
+          "02_订单状态与竞争规则.md"
+        ]
+      },
+      {
+        "title": "商品快照、报价与优惠",
+        "min_chars": 1800,
+        "topics": [
+          "价格不可追溯修改",
+          "最大余数法",
+          "赠品及运费"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "04_订单与退款样例.xlsx"
+        ]
+      },
+      {
+        "title": "下单与库存预占",
+        "min_chars": 2100,
+        "topics": [
+          "全成全败",
+          "预占ID",
+          "重复请求",
+          "TTL与明确释放"
+        ],
+        "source_paths": [
+          "02_订单状态与竞争规则.md",
+          "03_库存支付接口契约.docx"
+        ]
+      },
+      {
+        "title": "支付窗口与并发竞争",
+        "min_chars": 2600,
+        "topics": [
+          "15分钟等号边界",
+          "乐观锁裁决",
+          "晚到成功补偿",
+          "金额和签名检查"
+        ],
+        "source_paths": [
+          "02_订单状态与竞争规则.md",
+          "04_订单与退款样例.xlsx"
+        ]
+      },
+      {
+        "title": "取消、履约与门店自提",
+        "min_chars": 1900,
+        "topics": [
+          "PICKING拦截",
+          "多包裹单地点",
+          "核销权限",
+          "关闭并非退款"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "02_订单状态与竞争规则.md",
+          "07_页面及权限清单.md"
+        ]
+      },
+      {
+        "title": "退款、退货与额度控制",
+        "min_chars": 2500,
+        "topics": [
+          "原路退款",
+          "分件固定份额",
+          "占用可退额度",
+          "运费未决规则"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "03_库存支付接口契约.docx",
+          "04_订单与退款样例.xlsx",
+          "05_故障演练与SLO.txt"
+        ]
+      },
+      {
+        "title": "接口与错误语义",
+        "min_chars": 2500,
+        "topics": [
+          "路径字段",
+          "响应码",
+          "24小时键和长期业务约束",
+          "查询接口"
+        ],
+        "source_paths": [
+          "03_库存支付接口契约.docx"
+        ]
+      },
+      {
+        "title": "数据模型与事件契约",
+        "min_chars": 2000,
+        "topics": [
+          "主键引用",
+          "金额整数",
+          "时间存储",
+          "去重及乱序"
+        ],
+        "source_paths": [
+          "02_订单状态与竞争规则.md",
+          "03_库存支付接口契约.docx",
+          "04_订单与退款样例.xlsx"
+        ]
+      },
+      {
+        "title": "补偿、对账与可观测性",
+        "min_chars": 1900,
+        "topics": [
+          "outbox",
+          "五次重试",
+          "10分钟对账",
+          "死信人工处理"
+        ],
+        "source_paths": [
+          "02_订单状态与竞争规则.md",
+          "05_故障演练与SLO.txt"
+        ]
+      },
+      {
+        "title": "页面交互与敏感数据权限",
+        "min_chars": 1500,
+        "topics": [
+          "客服详情",
+          "退款审核",
+          "自提核销",
+          "受理与成功区分"
+        ],
+        "source_paths": [
+          "07_页面及权限清单.md"
+        ]
+      },
+      {
+        "title": "非功能与运行验收",
+        "min_chars": 1800,
+        "topics": [
+          "有条件性能SLO",
+          "99.9%",
+          "RTO/RPO",
+          "故障演练"
+        ],
+        "source_paths": [
+          "05_故障演练与SLO.txt"
+        ]
+      },
+      {
+        "title": "验收矩阵、追溯与待确认",
+        "min_chars": 2400,
+        "topics": [
+          "需求场景映射",
+          "边界和并发",
+          "计算核对",
+          "供应商及留存未定"
+        ],
+        "source_paths": [
+          "01_渠道业务研讨.docx",
+          "02_订单状态与竞争规则.md",
+          "03_库存支付接口契约.docx",
+          "04_订单与退款样例.xlsx",
+          "05_故障演练与SLO.txt",
+          "06_旧接口V1归档.md",
+          "07_页面及权限清单.md"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "F01",
+        "statement": "第一期覆盖WEB/MINI_APP/STORE，40店，不含第三方电商",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "1 业务边界",
+        "required_tokens": [
+          "40",
+          "WEB",
+          "MINI_APP",
+          "STORE"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F02",
+        "statement": "订单一期只能一个履约地点但可多个包裹",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "1 业务边界",
+        "required_tokens": [
+          "一个",
+          "包裹"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F03",
+        "statement": "当前支付窗口15分钟，now等于expires_at拒绝新支付",
+        "source": "02_订单状态与竞争规则.md",
+        "locator": "2 库存预占与15分钟窗口",
+        "required_tokens": [
+          "15",
+          "expires_at"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F04",
+        "statement": "时间存UTC毫秒、页面Asia/Shanghai",
+        "source": "02_订单状态与竞争规则.md",
+        "locator": "2 库存预占与15分钟窗口",
+        "required_tokens": [
+          "UTC",
+          "Asia/Shanghai"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F05",
+        "statement": "竞争由PENDING_PAYMENT+version原子更新裁决，不能只比paid_at",
+        "source": "02_订单状态与竞争规则.md",
+        "locator": "3 超时与支付成功竞争",
+        "required_tokens": [
+          "PENDING_PAYMENT",
+          "version",
+          "paid_at"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F06",
+        "statement": "已取消订单迟到有效支付不能复活，保留PAID并原路全额补偿",
+        "source": "02_订单状态与竞争规则.md",
+        "locator": "3 超时与支付成功竞争",
+        "required_tokens": [
+          "CANCELLED",
+          "PAID",
+          "退款"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F07",
+        "statement": "幂等键24小时，相同键不同请求409，业务唯一键持续约束",
+        "source": "03_库存支付接口契约.docx",
+        "locator": "1 通用契约",
+        "required_tokens": [
+          "24",
+          "409",
+          "IDEMPOTENCY_CONFLICT"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F08",
+        "statement": "当前金额为人民币分整数，V1元小数不是现规范",
+        "source": "03_库存支付接口契约.docx",
+        "locator": "1 通用契约",
+        "required_tokens": [
+          "分",
+          "整数"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F09",
+        "statement": "四组状态独立，已取消可同时已支付退款处理中",
+        "source": "02_订单状态与竞争规则.md",
+        "locator": "1 四组状态必须分开",
+        "required_tokens": [
+          "CANCELLED",
+          "PAID",
+          "PROCESSING"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F10",
+        "statement": "退款受理不是成功，未知结果不释放额度",
+        "source": "03_库存支付接口契约.docx",
+        "locator": "5 退款契约",
+        "required_tokens": [
+          "PROCESSING",
+          "SUCCEEDED",
+          "查询"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F11",
+        "statement": "成功和处理中退款都占数量及金额额度",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "4 履约和售后",
+        "required_tokens": [
+          "数量",
+          "金额",
+          "处理中"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F12",
+        "statement": "50000分仍规则审核，50001分需财务",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "2 角色与责任",
+        "required_tokens": [
+          "50000",
+          "50001",
+          "财务"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F13",
+        "statement": "部分退款不退运费，已全发货全退运费尚未定",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "3 下单与优惠",
+        "required_tokens": [
+          "运费",
+          "未确定"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F14",
+        "statement": "折扣最大余数法，余数相同line_id升序",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "3 下单与优惠",
+        "required_tokens": [
+          "最大余数",
+          "line_id"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F15",
+        "statement": "PICKING后普通取消进入人工拦截，不直接释放库存",
+        "source": "01_渠道业务研讨.docx",
+        "locator": "4 履约和售后",
+        "required_tokens": [
+          "PICKING",
+          "人工"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F16",
+        "statement": "新建峰值300次每秒、P95 800ms有下游150ms与最多20SKU条件",
+        "source": "05_故障演练与SLO.txt",
+        "locator": "已批准的性能条件",
+        "required_tokens": [
+          "300",
+          "800",
+          "150",
+          "20"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F17",
+        "statement": "5次重试5/30/120/300/900秒后转人工，每10分钟对账",
+        "source": "05_故障演练与SLO.txt",
+        "locator": "补偿与事件投递",
+        "required_tokens": [
+          "5",
+          "30",
+          "120",
+          "300",
+          "900",
+          "10"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F18",
+        "statement": "三件8999分固定份额3000/3000/2999，不能超退9000",
+        "source": "05_故障演练与SLO.txt",
+        "locator": "分件退款正式补充规则",
+        "required_tokens": [
+          "8999",
+          "3000",
+          "2999"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F19",
+        "statement": "provider_txn_id全局唯一、金额不符不确认发货",
+        "source": "03_库存支付接口契约.docx",
+        "locator": "4 支付回调",
+        "required_tokens": [
+          "provider_txn_id",
+          "金额"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F20",
+        "statement": "RTO30分钟RPO5分钟为目标尚未经生产验证",
+        "source": "05_故障演练与SLO.txt",
+        "locator": "已批准的性能条件",
+        "required_tokens": [
+          "RTO",
+          "30",
+          "RPO",
+          "5"
+        ],
+        "severity": "critical"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "C01",
+        "description": "O-001优惠分摊",
+        "source": "04_订单与退款样例.xlsx",
+        "formula": "1000*[10000,20000,30000]/60000，先取[166,333,500]后余分给L01",
+        "result": "L01=167；L02=333；L03=500；L04=0",
+        "unit": "分"
+      },
+      {
+        "id": "C02",
+        "description": "O-001实付与退款后余额",
+        "source": "04_订单与退款样例.xlsx",
+        "formula": "(10000-167)+(20000-333)+(30000-500)+600=59600;59600-19667=39933",
+        "result": "实付59600；退L02为19667；余额39933",
+        "unit": "分"
+      },
+      {
+        "id": "C03",
+        "description": "相同余数优惠排序",
+        "source": "04_订单与退款样例.xlsx",
+        "formula": "1*[100,100,100]/300，余数相同按A/B/C",
+        "result": "A优惠1；B优惠0；C优惠0；实付299",
+        "unit": "分"
+      },
+      {
+        "id": "C04",
+        "description": "O-003分件及可退额度",
+        "source": "04_订单与退款样例.xlsx",
+        "formula": "9999-1000=8999;8999=3000+3000+2999;8999-3000-3000=2999",
+        "result": "最后可申请1件2999；RF-004和RF-005不可同时获准",
+        "unit": "分"
+      },
+      {
+        "id": "C05",
+        "description": "30天月份99.9%可用性的不可用分钟预算",
+        "source": "05_故障演练与SLO.txt",
+        "formula": "30*24*60*(1-0.999)",
+        "result": 43.2,
+        "unit": "分钟"
+      }
+    ],
+    "must_not_claim": [
+      "不得使用30分钟作为新订单支付窗口。",
+      "不得把支付回调晚到一律判失败、忽略真实入账或复活已取消订单。",
+      "不得用消息event_id去重替代业务幂等。",
+      "不得将退款accepted或超时未知写成SUCCEEDED。",
+      "不得为多包裹自动引入跨仓拆单。",
+      "不得指定尚未选择的真实支付商、承运商或数据保存期限。",
+      "不得把所有SLO推广到无条件的所有接口响应。"
+    ],
+    "gaps": [
+      {
+        "topic": "全部发货后全退的运费",
+        "reason": "业务未决",
+        "expected_handling": "列独立待确认和分支影响，不在计算示例擅定。"
+      },
+      {
+        "topic": "支付供应商、承运商、留存期限与增长量",
+        "reason": "纪要未选择或未估算",
+        "expected_handling": "保持平台契约；可提出评估项，不能声称已接入。"
+      },
+      {
+        "topic": "历史全量迁移及自提纠错",
+        "reason": "只有兼容约束未定实施",
+        "expected_handling": "列待确认、记录假设，并与一期强制验收分开。"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "flowchart",
+        "title": "下单预占、支付与履约主流程",
+        "requirements": [
+          "预占全成全败",
+          "15分钟窗口",
+          "支付金额和签名校验",
+          "取消与补偿分支"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "支付成功与超时关闭竞争时序",
+        "requirements": [
+          "两种原子更新胜出情况",
+          "晚到支付退款补偿",
+          "已确认订单拒绝旧超时事件"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "退款状态与额度占用",
+        "requirements": [
+          "受理进入PROCESSING",
+          "成功才累计成功退款",
+          "未知结果查询",
+          "失败明确后释放额度"
+        ]
+      },
+      {
+        "kind": "prototype",
+        "title": "客服订单详情与退款审核",
+        "requirements": [
+          "三组业务状态与逐笔退款并列",
+          "处理中额度显示",
+          "50000分审核边界",
+          "手机号和地址脱敏"
+        ]
+      }
+    ],
+    "acceptance": [
+      "正文25000～35000字符，含14个完整主题，不能重复阐述金额和状态凑字数。",
+      "至少给出20条可执行验收用例，覆盖三种支付竞争、两个幂等层次、库存丢响应、退款未知、消息乱序、权限越界及运费未定。",
+      "四组状态字段、所有边界金额、15分钟包含关系在接口、流程、数据表和测试一致。",
+      "五组计算均正确；未知结果保留业务事实及补偿，而非标成成功或失败。",
+      "接口字段类型、枚举、唯一性、错误码和重试条件具体可实现，并注明来源。",
+      "Word长字段表跨页可读、流程图无裁切、原型按钮与角色权限一致。"
+    ]
+  },
+  "execution": {
+    "web_mode": "disabled",
+    "local_round_limit": 3,
+    "web_round_limit": 2,
+    "notes": [
+      "所有组织、人员、交易、产品及规则均为虚构测试数据。",
+      "本地研究最多 3 轮，每轮可进行多次有界工具调用；该用例禁用联网，必须记录 Tavily 不可用并进入明确标注的建议补全，不能伪称搜索成功。",
+      "只向被测智能体上传 sources 目录并发送 prompt；expected 为独立验收参考，不能加入资料包。",
+      "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代；字数达标不能替代事实正确与覆盖完整，不得重复段落或表格凑数。"
+    ]
+  },
+  "counting_method": "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代。"
+}

@@ -1,0 +1,48 @@
+{
+  "case_id": "TC05",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_分析委托与口径.docx",
+      "kind": "docx",
+      "title": "澜舟耗材2026年9月库存与补货分析委托",
+      "bytes": 38605,
+      "sha256": "ce45d31e9f7a112612db3931d6d5bdf8285bc4d5faaa7f10ec4967153910fb82"
+    },
+    {
+      "path": "02_九月销售与退款.xlsx",
+      "kind": "xlsx",
+      "title": "销售订单行、退款与异常记录",
+      "bytes": 8558,
+      "sha256": "ad2db9a9e70d85be5cdc01ce5badd5eaeec20d2a33df557d780bbffcb18dcaa1"
+    },
+    {
+      "path": "03_库存与采购.xlsx",
+      "kind": "xlsx",
+      "title": "期末库存快照、采购状态及SKU参数",
+      "bytes": 8260,
+      "sha256": "e90621fac5b23d2088a2358cfbacd5c86d4d643f10161687bc2746066b69facf"
+    },
+    {
+      "path": "04_补货规则.md",
+      "kind": "md",
+      "title": "本次分析采用的补货计算规则",
+      "bytes": 1325,
+      "sha256": "88695dfadcef77fb1cad3c715b5c3b420b3f6fad082d640a3128e36a790d9bfe"
+    },
+    {
+      "path": "05_经营复盘访谈.txt",
+      "kind": "txt",
+      "title": "经营与仓库负责人访谈",
+      "bytes": 1000,
+      "sha256": "a32cc121919851249da8189fe92a963d50b20238af88899e087a1e1529f6139a"
+    },
+    {
+      "path": "06_汇报框架.pptx",
+      "kind": "pptx",
+      "title": "经营例会报告结构参考",
+      "bytes": 30823,
+      "sha256": "a5d2986ef1365ffa2198cc675c4f2596caab977830f092d85181a5856c5ef676"
+    }
+  ]
+}

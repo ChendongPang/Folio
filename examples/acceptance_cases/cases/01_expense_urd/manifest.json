@@ -1,0 +1,48 @@
+{
+  "case_id": "TC01",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_业务访谈.docx",
+      "kind": "docx",
+      "title": "业务访谈：费用报销试点 2026-06-20",
+      "bytes": 38884,
+      "sha256": "eb57d40ec610a52705e242496958c79016da2b4fd33f7c6aac74ac1848547f39"
+    },
+    {
+      "path": "02_费用制度V1.2.docx",
+      "kind": "docx",
+      "title": "费用制度 V1.2（已批准，2026-07-01 生效）",
+      "bytes": 40125,
+      "sha256": "e241f88058ad4ea6f6aa2f7bc823a2882a22f91c502c4b56e8973deace26507c"
+    },
+    {
+      "path": "03_试点报销记录.xlsx",
+      "kind": "xlsx",
+      "title": "试点报销样例与权限矩阵",
+      "bytes": 9505,
+      "sha256": "56eefb641f0f3ddd5aba0bd152979bbeec82c4d320c2d388906eb85bb0a117f0"
+    },
+    {
+      "path": "04_历史制度V0.9.md",
+      "kind": "md",
+      "title": "历史归档制度 V0.9：2026-06-30 及以前首次提交适用",
+      "bytes": 733,
+      "sha256": "95e785149947f10445493c484436c0a1fee421b642b137dcaad74ae2b0b341ca"
+    },
+    {
+      "path": "05_页面与角色清单.md",
+      "kind": "md",
+      "title": "页面草图文字稿与交互清单",
+      "bytes": 1307,
+      "sha256": "e23eb357c249b1326e05c08b0689da6fd190e46858180e0022640beaaee146f3"
+    },
+    {
+      "path": "06_系统边界与会议纪要.txt",
+      "kind": "txt",
+      "title": "系统边界与决策纪要 2026-06-26",
+      "bytes": 1405,
+      "sha256": "94e19f8d232caed9459c295fca7e7a2cbd029dd7ee52ae4b5d666d632c629097"
+    }
+  ]
+}

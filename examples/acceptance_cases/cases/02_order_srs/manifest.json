@@ -1,0 +1,55 @@
+{
+  "case_id": "TC02",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_渠道业务研讨.docx",
+      "kind": "docx",
+      "title": "全渠道订单中台业务研讨（2026-08-03 定稿）",
+      "bytes": 38940,
+      "sha256": "c813147492427e0312236f0036c0e7b5e70acdf21b9f298853428673c00af792"
+    },
+    {
+      "path": "02_订单状态与竞争规则.md",
+      "kind": "md",
+      "title": "当前规则 V2：订单状态与事件竞争",
+      "bytes": 3094,
+      "sha256": "4d99db58653f638e4b207573015ec0d765c920f68814e760818fffeb57821ae6"
+    },
+    {
+      "path": "03_库存支付接口契约.docx",
+      "kind": "docx",
+      "title": "库存、支付和退款接口契约 V2.1（2026-08-05）",
+      "bytes": 39533,
+      "sha256": "8c49fa195cd5b372c8685ccfee3ea38f63c5f588bf607be0d2935c45c8dba0cf"
+    },
+    {
+      "path": "04_订单与退款样例.xlsx",
+      "kind": "xlsx",
+      "title": "金额、状态竞争与接口样例",
+      "bytes": 9970,
+      "sha256": "c2e33959b75b63c278390309cb0b1ab9f3dcf888aa0aee1c6e3ec908ef0036b0"
+    },
+    {
+      "path": "05_故障演练与SLO.txt",
+      "kind": "txt",
+      "title": "故障演练、分件退款及SLO决策纪要",
+      "bytes": 2151,
+      "sha256": "e67a5a2208424d5115dc0377edebb6af516aaea5e6f5cb10d1cbf73595b7babe"
+    },
+    {
+      "path": "06_旧接口V1归档.md",
+      "kind": "md",
+      "title": "归档 V1 接口与规则（禁止用于新接入）",
+      "bytes": 600,
+      "sha256": "a9afd40ce1b5e8778cd31c6af3f83c46bf3ea46e23763ba03103565d9db368bb"
+    },
+    {
+      "path": "07_页面及权限清单.md",
+      "kind": "md",
+      "title": "工作台及权限交互清单",
+      "bytes": 1146,
+      "sha256": "dd8266eab944a5bf78d4a7e384baf521d1d98f019f959636994d6350784414ac"
+    }
+  ]
+}

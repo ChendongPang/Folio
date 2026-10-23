@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "base_url": "${FOLIO_MODEL_BASE_URL}",
+  "model": "${FOLIO_MODEL}",
+  "api_key": "${FOLIO_MODEL_API_KEY}",
+  "no_auth": false,
+  "max_tokens": 128000,
+  "max_input_tokens": 600000,
+  "planning_max_tokens": null,
+  "temperature": 0.1,
+  "enable_thinking": null,
+  "structured_output": "prompt",
+  "supports_image_input": false,
+  "decision_provider": "llm",
+  "decision_enabled": false,
+  "decision_base_url": "",
+  "decision_model": "",
+  "decision_api_key": "",
+  "search_provider": "tavily",
+  "tavily_enabled": false,
+  "tavily_api_key": "",
+  "deepseek_api_key": ""
+}

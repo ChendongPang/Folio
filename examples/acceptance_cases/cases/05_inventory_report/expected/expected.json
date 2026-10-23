@@ -1,0 +1,638 @@
+{
+  "id": "TC05",
+  "name": "库存补货经营分析报告：表格计算与可复核金标",
+  "document_type": "general",
+  "output_title": "澜舟耗材2026年9月库存与补货经营分析报告",
+  "output_filename": "澜舟耗材_2026年9月库存与补货分析报告.docx",
+  "target_chars": {
+    "min": 18000,
+    "max": 25000
+  },
+  "audience": [
+    "经营负责人",
+    "采购负责人",
+    "仓库主管"
+  ],
+  "focus": [
+    "多Sheet和隐藏Sheet导航",
+    "整数金额与时区边界",
+    "退款状态与排除规则",
+    "Python精确计算和派生证据",
+    "长报告的数字全局一致"
+  ],
+  "expected": {
+    "chapters": [
+      {
+        "title": "管理摘要与结论",
+        "min_chars": 1300,
+        "topics": [
+          "核心指标",
+          "采购行动",
+          "重要限制"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "04_补货规则.md",
+          "05_经营复盘访谈.txt"
+        ]
+      },
+      {
+        "title": "业务背景与数据范围",
+        "min_chars": 1400,
+        "topics": [
+          "公司和SKU",
+          "统计窗口",
+          "字段与来源"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "02_九月销售与退款.xlsx",
+          "03_库存与采购.xlsx"
+        ]
+      },
+      {
+        "title": "数据质量与纳入排除规则",
+        "min_chars": 1700,
+        "topics": [
+          "状态过滤",
+          "关联键",
+          "时区和隐藏旧口径"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "02_九月销售与退款.xlsx"
+        ]
+      },
+      {
+        "title": "销售规模与SKU构成",
+        "min_chars": 1700,
+        "topics": [
+          "净销售额和数量",
+          "SKU构成",
+          "不可算同比环比"
+        ],
+        "source_paths": [
+          "02_九月销售与退款.xlsx",
+          "05_经营复盘访谈.txt"
+        ]
+      },
+      {
+        "title": "退款影响与异常订单",
+        "min_chars": 1500,
+        "topics": [
+          "已完成与处理中",
+          "排除行",
+          "假设情景区分"
+        ],
+        "source_paths": [
+          "02_九月销售与退款.xlsx",
+          "05_经营复盘访谈.txt"
+        ]
+      },
+      {
+        "title": "仓别经营表现",
+        "min_chars": 1400,
+        "topics": [
+          "东仓和西仓",
+          "可比口径",
+          "不能直接判断仓库效率"
+        ],
+        "source_paths": [
+          "02_九月销售与退款.xlsx",
+          "05_经营复盘访谈.txt"
+        ]
+      },
+      {
+        "title": "成本毛利与结构分析",
+        "min_chars": 1800,
+        "topics": [
+          "标准成本",
+          "毛利率",
+          "非净利润"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "02_九月销售与退款.xlsx",
+          "03_库存与采购.xlsx"
+        ]
+      },
+      {
+        "title": "期末库存与在途诊断",
+        "min_chars": 1800,
+        "topics": [
+          "实物预留和可售",
+          "采购状态",
+          "退货与收货不重复"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "03_库存与采购.xlsx"
+        ]
+      },
+      {
+        "title": "补货模型与计算过程",
+        "min_chars": 2000,
+        "topics": [
+          "精确日需求",
+          "触发规则",
+          "包装取整和标准成本预算"
+        ],
+        "source_paths": [
+          "03_库存与采购.xlsx",
+          "04_补货规则.md"
+        ]
+      },
+      {
+        "title": "SKU补货建议与执行清单",
+        "min_chars": 1800,
+        "topics": [
+          "四SKU逐项解释",
+          "A和C采购量",
+          "不擅自仓间分配"
+        ],
+        "source_paths": [
+          "03_库存与采购.xlsx",
+          "04_补货规则.md",
+          "06_汇报框架.pptx"
+        ]
+      },
+      {
+        "title": "风险情景与数据缺口",
+        "min_chars": 1600,
+        "topics": [
+          "R004假设",
+          "缺失履约和季节数据",
+          "建议可信边界"
+        ],
+        "source_paths": [
+          "05_经营复盘访谈.txt"
+        ]
+      },
+      {
+        "title": "计算复核附录与指标字典",
+        "min_chars": 2300,
+        "topics": [
+          "逐行纳入排除",
+          "公式和中间值",
+          "金标可复算"
+        ],
+        "source_paths": [
+          "01_分析委托与口径.docx",
+          "02_九月销售与退款.xlsx",
+          "03_库存与采购.xlsx",
+          "04_补货规则.md"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "F01",
+        "statement": "统计月为2026年9月，时区Asia/Shanghai，10月1日00:00不纳入。",
+        "source": "01_分析委托与口径.docx",
+        "locator": "统计窗口与金额口径",
+        "required_tokens": [
+          "2026年9月",
+          "Asia/Shanghai"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F02",
+        "statement": "S009作废、S010待支付、S011窗口外均排除。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "销售明细 Sheet",
+        "required_tokens": [
+          "S009",
+          "S010",
+          "S011"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F03",
+        "statement": "R004处理中，5000分和10包不得冲减9月已实现指标。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "退款明细 Sheet R004",
+        "required_tokens": [
+          "R004",
+          "处理中",
+          "50"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F04",
+        "statement": "正式退款仅R001、R002、R003，合计56000分即560元。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "退款明细 Sheet",
+        "required_tokens": [
+          "R001",
+          "R002",
+          "R003",
+          "560"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F05",
+        "statement": "净销售额12340元。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "销售明细和退款明细",
+        "required_tokens": [
+          "12340"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F06",
+        "statement": "净销售成本7460元、毛利4880元、毛利率39.55%。",
+        "source": "03_库存与采购.xlsx",
+        "locator": "SKU参数与销售退款联合计算",
+        "required_tokens": [
+          "7460",
+          "4880",
+          "39.55"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F07",
+        "statement": "A净销量190件、净销售5700元，净销售额最大。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "SKU A行",
+        "required_tokens": [
+          "190",
+          "5700"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F08",
+        "statement": "C净销量280双；D净销量300包；不同单位不得混为可比总销量。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "SKU C与D行",
+        "required_tokens": [
+          "280",
+          "300"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F09",
+        "statement": "A库存位置55件，由可售现货35件与确认在途20件组成。",
+        "source": "03_库存与采购.xlsx",
+        "locator": "库存快照 A；采购 P001",
+        "required_tokens": [
+          "55",
+          "35",
+          "20"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F10",
+        "statement": "B库存位置105瓶，C50双，D170包。",
+        "source": "03_库存与采购.xlsx",
+        "locator": "库存快照及采购订单",
+        "required_tokens": [
+          "105",
+          "50",
+          "170"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F11",
+        "statement": "仅P001、P002计入在途；P003草稿、P004取消、P005已收货不计在途。",
+        "source": "03_库存与采购.xlsx",
+        "locator": "采购订单 Sheet",
+        "required_tokens": [
+          "P001",
+          "P002",
+          "P003",
+          "P004",
+          "P005"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F12",
+        "statement": "A建议补货140件；C建议补货150双；B和D不触发补货。",
+        "source": "04_补货规则.md",
+        "locator": "固定计算方法联合SKU参数",
+        "required_tokens": [
+          "140",
+          "150"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F13",
+        "statement": "采购预算按标准成本为3270元，不是供应商报价。",
+        "source": "04_补货规则.md",
+        "locator": "固定计算方法",
+        "required_tokens": [
+          "3270",
+          "标准成本"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F14",
+        "statement": "东仓净销售7340元，西仓5000元。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "按仓库汇总",
+        "required_tokens": [
+          "7340",
+          "5000"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F15",
+        "statement": "库存快照已包含退货入库和P005，不得二次追加。",
+        "source": "03_库存与采购.xlsx",
+        "locator": "快照说明 Sheet",
+        "required_tokens": [
+          "P005",
+          "快照"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F16",
+        "statement": "没有历史比较期数据，不能计算同比环比，也不能声称精确缺货天数。",
+        "source": "05_经营复盘访谈.txt",
+        "locator": "资料局限与管理动作",
+        "required_tokens": [
+          "同比",
+          "环比"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F17",
+        "statement": "隐藏Sheet旧口径已废止，不能采用处理中退款扣除规则。",
+        "source": "02_九月销售与退款.xlsx",
+        "locator": "旧口径_禁用 Sheet",
+        "required_tokens": [
+          "旧口径",
+          "处理中"
+        ],
+        "severity": "major"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "C01",
+        "description": "合格销售毛实收",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "360000+240000+180000+120000+160000+80000+80000+70000",
+        "result": 1290000,
+        "unit": "分"
+      },
+      {
+        "id": "C02",
+        "description": "已完成合格退款",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "30000+10000+16000；R004处理中不计",
+        "result": 56000,
+        "unit": "分"
+      },
+      {
+        "id": "C03",
+        "description": "净销售额",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "1290000-56000",
+        "result": 1234000,
+        "unit": "分"
+      },
+      {
+        "id": "C_A_NET",
+        "description": "A净销量与净销售额",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该SKU合格销售减已完成合格退款",
+        "result": {
+          "net_quantity": 190,
+          "net_revenue_fen": 570000,
+          "gross_profit_fen": 228000
+        },
+        "unit": "数量：件；金额：分"
+      },
+      {
+        "id": "C_A_REORDER",
+        "description": "A补货计算",
+        "source": "03_库存与采购.xlsx",
+        "formula": "联合来源 03_库存与采购.xlsx、04_补货规则.md；d=190/30；库存位置=55；再订货点=(190/30)*15；低于再订货点才按目标30天和包装20向上取整",
+        "result": {
+          "inventory_position": 55,
+          "daily_demand_exact": "190/30",
+          "reorder_point_exact": "2850/30",
+          "order_quantity": 140,
+          "budget_fen": 252000
+        },
+        "unit": "数量：件；金额：分"
+      },
+      {
+        "id": "C_B_NET",
+        "description": "B净销量与净销售额",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该SKU合格销售减已完成合格退款",
+        "result": {
+          "net_quantity": 145,
+          "net_revenue_fen": 290000,
+          "gross_profit_fen": 116000
+        },
+        "unit": "数量：瓶；金额：分"
+      },
+      {
+        "id": "C_B_REORDER",
+        "description": "B补货计算",
+        "source": "03_库存与采购.xlsx",
+        "formula": "联合来源 03_库存与采购.xlsx、04_补货规则.md；d=145/30；库存位置=105；再订货点=(145/30)*10；低于再订货点才按目标30天和包装10向上取整",
+        "result": {
+          "inventory_position": 105,
+          "daily_demand_exact": "145/30",
+          "reorder_point_exact": "1450/30",
+          "order_quantity": 0,
+          "budget_fen": 0
+        },
+        "unit": "数量：瓶；金额：分"
+      },
+      {
+        "id": "C_C_NET",
+        "description": "C净销量与净销售额",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该SKU合格销售减已完成合格退款",
+        "result": {
+          "net_quantity": 280,
+          "net_revenue_fen": 224000,
+          "gross_profit_fen": 84000
+        },
+        "unit": "数量：双；金额：分"
+      },
+      {
+        "id": "C_C_REORDER",
+        "description": "C补货计算",
+        "source": "03_库存与采购.xlsx",
+        "formula": "联合来源 03_库存与采购.xlsx、04_补货规则.md；d=280/30；库存位置=50；再订货点=(280/30)*10；低于再订货点才按目标20天和包装50向上取整",
+        "result": {
+          "inventory_position": 50,
+          "daily_demand_exact": "280/30",
+          "reorder_point_exact": "2800/30",
+          "order_quantity": 150,
+          "budget_fen": 75000
+        },
+        "unit": "数量：双；金额：分"
+      },
+      {
+        "id": "C_D_NET",
+        "description": "D净销量与净销售额",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该SKU合格销售减已完成合格退款",
+        "result": {
+          "net_quantity": 300,
+          "net_revenue_fen": 150000,
+          "gross_profit_fen": 60000
+        },
+        "unit": "数量：包；金额：分"
+      },
+      {
+        "id": "C_D_REORDER",
+        "description": "D补货计算",
+        "source": "03_库存与采购.xlsx",
+        "formula": "联合来源 03_库存与采购.xlsx、04_补货规则.md；d=300/30；库存位置=170；再订货点=(300/30)*7；低于再订货点才按目标20天和包装25向上取整",
+        "result": {
+          "inventory_position": 170,
+          "daily_demand_exact": "300/30",
+          "reorder_point_exact": "2100/30",
+          "order_quantity": 0,
+          "budget_fen": 0
+        },
+        "unit": "数量：包；金额：分"
+      },
+      {
+        "id": "C04",
+        "description": "公司净销售成本",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "联合来源 02_九月销售与退款.xlsx、03_库存与采购.xlsx；190*1800+145*1200+280*500+300*300",
+        "result": 746000,
+        "unit": "分"
+      },
+      {
+        "id": "C05",
+        "description": "公司净毛利",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "联合来源 02_九月销售与退款.xlsx、03_库存与采购.xlsx；1234000-746000",
+        "result": 488000,
+        "unit": "分"
+      },
+      {
+        "id": "C06",
+        "description": "公司毛利率",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "联合来源 02_九月销售与退款.xlsx、03_库存与采购.xlsx；488000/1234000*100，最后四舍五入保留2位",
+        "result": "39.55",
+        "unit": "%"
+      },
+      {
+        "id": "C07",
+        "description": "补货标准成本预算合计",
+        "source": "03_库存与采购.xlsx",
+        "formula": "联合来源 03_库存与采购.xlsx、04_补货规则.md；140*1800+150*500",
+        "result": 327000,
+        "unit": "分"
+      },
+      {
+        "id": "C_EAST",
+        "description": "东仓净销售",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该仓合格销售减该仓已完成合格退款",
+        "result": {
+          "net_quantity": 540,
+          "net_revenue_fen": 734000
+        },
+        "unit": "混合计量单位的数量仅供逐行核对，不作可比业务指标；金额：分"
+      },
+      {
+        "id": "C_WEST",
+        "description": "西仓净销售",
+        "source": "02_九月销售与退款.xlsx",
+        "formula": "该仓合格销售减该仓已完成合格退款",
+        "result": {
+          "net_quantity": 375,
+          "net_revenue_fen": 500000
+        },
+        "unit": "混合计量单位的数量仅供逐行核对，不作可比业务指标；金额：分"
+      }
+    ],
+    "must_not_claim": [
+      "将R004处理中退款扣入已实现净销售",
+      "把12900元毛实收当净销售",
+      "先四舍五入日需求再计算采购量",
+      "A补货135件或C补货137双而忽略包装倍数",
+      "把P003草稿或P005已收货再次计入在途",
+      "称毛利4880元为净利润",
+      "将3270元预算称为真实报价",
+      "有证据证明销售同比或环比增长",
+      "有证据得出具体缺货日数或精确仓储效率",
+      "将915个混合计量单位描述为可比商品总销量"
+    ],
+    "gaps": [
+      {
+        "topic": "同比、环比和季节性",
+        "reason": "只有2026年9月单月数据",
+        "expected_handling": "明确无法计算，列出需要补充的比较期与连续销售数据"
+      },
+      {
+        "topic": "仓间调拨及供应商选型",
+        "reason": "没有运费、仓别服务目标、报价和履约历史",
+        "expected_handling": "不直接分配公司级采购到两仓；给出数据收集与审批建议"
+      },
+      {
+        "topic": "实际缺货与精确库存周转",
+        "reason": "仅有期末快照，无每日库存流水",
+        "expected_handling": "使用期末覆盖估计并说明局限，不声称历史实际缺货天数"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "chart",
+        "title": "各SKU净销售额与毛利",
+        "requirements": [
+          "元为单位",
+          "A5700/2280，B2900/1160，C2240/840，D1500/600",
+          "不将数量与货币共用无说明坐标轴"
+        ]
+      },
+      {
+        "kind": "chart",
+        "title": "库存位置与再订货点",
+        "requirements": [
+          "A55对95，B105对145/3，C50对280/3，D170对70",
+          "不同SKU计量单位清楚标注",
+          "A/C低于阈值，B/D不低于阈值"
+        ]
+      }
+    ],
+    "acceptance": [
+      "12章完整形成18000—25000字长报告；摘要、正文、表格和图表的数值相同。",
+      "所有关键金额可以由源表逐行重算，至少给出4个SKU及2个仓库核对。",
+      "净销售额12340元、毛利4880元、39.55%毛利率、A140件/C150双及3270元预算全部正确。",
+      "隐藏旧口径、窗口边界S011、取消/未支付订单、处理中退款均被识别，不采用简单全表SUM。",
+      "R004可列假设情景但不覆盖基准，假设与事实的标签在图表中也保留。",
+      "最终Word目录、页码、长表标题和图表单位清楚，附录公式有明确源Sheet和行标识。"
+    ]
+  },
+  "execution": {
+    "web_mode": "disabled",
+    "local_round_limit": 3,
+    "web_round_limit": 2,
+    "notes": [
+      "金额、采购量等金标由配方内原始行独立计算生成。",
+      "这是虚构经营分析材料，不是实际财务或投资建议。",
+      "不需要真实LLM或联网调用才能生成这些测试资料；后续可上传运行。"
+    ]
+  },
+  "counting_method": "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代。"
+}

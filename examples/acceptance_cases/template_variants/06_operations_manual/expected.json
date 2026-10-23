@@ -1,0 +1,178 @@
+{
+  "variant_id": "TV06",
+  "base_case_id": "TC06",
+  "name": "资料不足的完整运维模板",
+  "document_type": "general",
+  "output_filename": "云栈协同平台_运维操作手册.docx",
+  "target_chars": {
+    "min": 25000,
+    "max": 35000
+  },
+  "base_expected_path": "../../cases/06_operations_manual/expected/expected.json",
+  "template_path": "文档模板.docx",
+  "sources_path": "../../cases/06_operations_manual/sources",
+  "fixed_sections": [
+    {
+      "section_id": "template_0001",
+      "title": "手册范围、读者与使用方式",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0002",
+      "title": "系统架构与依赖关系",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0003",
+      "title": "角色权限、值守与交接",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0004",
+      "title": "环境访问与只读诊断",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0005",
+      "title": "日常巡检与记录模板",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0006",
+      "title": "指标告警与通知升级",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0007",
+      "title": "事件分级与处置流程",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0008",
+      "title": "任务与导出故障排查",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0009",
+      "title": "变更发布与回滚规程",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0010",
+      "title": "数据库、备份与恢复验证",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。\n填写说明：分别列出 RTO、RPO、恢复验证状态及其项目依据；未获批准的目标和值保留待确认，不能用旧项目示例或通用经验填成已批准政策。",
+      "allow_children": false,
+      "tables": [
+        {
+          "table_id": "template_0010_table_1",
+          "body_index": 25,
+          "headers": [
+            "参数或验证事项",
+            "已确认值或待确认",
+            "依据与核实方式"
+          ],
+          "header_rows": 1,
+          "min_data_rows": 1
+        }
+      ]
+    },
+    {
+      "section_id": "template_0011",
+      "title": "附件与对象存储一致性",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0012",
+      "title": "容量管理与阈值制定",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0013",
+      "title": "演练方案与新人实操",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0014",
+      "title": "待决事项、证据追踪与维护",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    }
+  ],
+  "format_expectations": {
+    "normal_latin_font": "Arial",
+    "normal_east_asian_font": "仿宋",
+    "normal_font_size_pt": 10.5,
+    "normal_line_spacing": 1.5,
+    "normal_space_after_pt": 8,
+    "margins_cm": {
+      "top": 2.4,
+      "bottom": 2.2,
+      "left": 2.8,
+      "right": 2.1
+    },
+    "page_size_cm": [
+      21,
+      29.7
+    ],
+    "preserve_header_footer": true,
+    "cover_document_title": "云栈协同平台运维操作手册"
+  },
+  "forbidden_template_examples": [
+    "北辰旧项目示例",
+    "987654326",
+    "示例负责人"
+  ],
+  "acceptance": [
+    "继承原案例的事实、计算、缺口、图表、覆盖范围和有效字数验收。",
+    "固定章节标题、层级及顺序与模板一致，新增子章节仅位于允许范围。",
+    "每张必填表独立存在，逻辑列名完整匹配，至少有一行资料支持或明确待确认的数据。",
+    "模板原件及其重复上传副本不得进入业务证据索引或全局事实。",
+    "成品删除旧项目示例与填写提示；不把待确认参数伪装成确定事实。",
+    "以真实 Word/PDF 成品检查模板字体、边距、页眉页脚、表头与分页可读性。"
+  ],
+  "variant_checks": [
+    "RTO/RPO 等未批准参数保留待确认；通用联网信息不能证明项目内部批准。"
+  ],
+  "validation_status": "fixture_structure_checked_only",
+  "full_long_document_generation_tested": false,
+  "requires_manual_review": true
+}

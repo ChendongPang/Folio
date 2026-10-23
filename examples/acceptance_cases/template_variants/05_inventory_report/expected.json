@@ -1,0 +1,163 @@
+{
+  "variant_id": "TV05",
+  "base_case_id": "TC05",
+  "name": "两行合并表头的分析报告",
+  "document_type": "general",
+  "output_filename": "澜舟耗材_2026年9月库存与补货分析报告.docx",
+  "target_chars": {
+    "min": 18000,
+    "max": 25000
+  },
+  "base_expected_path": "../../cases/05_inventory_report/expected/expected.json",
+  "template_path": "文档模板.docx",
+  "sources_path": "../../cases/05_inventory_report/sources",
+  "fixed_sections": [
+    {
+      "section_id": "template_0001",
+      "title": "管理摘要与结论",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0002",
+      "title": "业务背景与数据范围",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0003",
+      "title": "数据质量与纳入排除规则",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0004",
+      "title": "销售规模与SKU构成",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0005",
+      "title": "退款影响与异常订单",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0006",
+      "title": "仓别经营表现",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0007",
+      "title": "成本毛利与结构分析",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0008",
+      "title": "期末库存与在途诊断",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0009",
+      "title": "补货模型与计算过程",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0010",
+      "title": "SKU补货建议与执行清单",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。\n填写说明：保留两行分组表头；按真实工作簿计算各 SKU 建议数量及依据，不得把空白样式行当成已完成的数据记录。",
+      "allow_children": false,
+      "tables": [
+        {
+          "table_id": "template_0010_table_1",
+          "body_index": 25,
+          "headers": [
+            "商品资料 / SKU",
+            "商品资料 / 计量单位",
+            "补货结论 / 建议数量",
+            "补货结论 / 计算依据"
+          ],
+          "header_rows": 2,
+          "min_data_rows": 1
+        }
+      ]
+    },
+    {
+      "section_id": "template_0011",
+      "title": "风险情景与数据缺口",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0012",
+      "title": "计算复核附录与指标字典",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    }
+  ],
+  "format_expectations": {
+    "normal_latin_font": "Arial",
+    "normal_east_asian_font": "仿宋",
+    "normal_font_size_pt": 10.5,
+    "normal_line_spacing": 1.5,
+    "normal_space_after_pt": 8,
+    "margins_cm": {
+      "top": 2.4,
+      "bottom": 2.2,
+      "left": 2.8,
+      "right": 2.1
+    },
+    "page_size_cm": [
+      21,
+      29.7
+    ],
+    "preserve_header_footer": true,
+    "cover_document_title": "澜舟耗材2026年9月库存与补货经营分析报告"
+  },
+  "forbidden_template_examples": [
+    "北辰旧项目示例",
+    "987654325",
+    "示例负责人"
+  ],
+  "acceptance": [
+    "继承原案例的事实、计算、缺口、图表、覆盖范围和有效字数验收。",
+    "固定章节标题、层级及顺序与模板一致，新增子章节仅位于允许范围。",
+    "每张必填表独立存在，逻辑列名完整匹配，至少有一行资料支持或明确待确认的数据。",
+    "模板原件及其重复上传副本不得进入业务证据索引或全局事实。",
+    "成品删除旧项目示例与填写提示；不把待确认参数伪装成确定事实。",
+    "以真实 Word/PDF 成品检查模板字体、边距、页眉页脚、表头与分页可读性。"
+  ],
+  "variant_checks": [
+    "原 Word 保留两行合并表头；数据行不合并；不以空白样式行充数。"
+  ],
+  "validation_status": "fixture_structure_checked_only",
+  "full_long_document_generation_tested": false,
+  "requires_manual_review": true
+}

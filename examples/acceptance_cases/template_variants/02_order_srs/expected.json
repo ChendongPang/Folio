@@ -1,0 +1,191 @@
+{
+  "variant_id": "TV02",
+  "base_case_id": "TC02",
+  "name": "同列名的两张独立必填表",
+  "document_type": "srs",
+  "output_filename": "星屿生活全渠道订单中台需求规格说明书.docx",
+  "target_chars": {
+    "min": 25000,
+    "max": 35000
+  },
+  "base_expected_path": "../../cases/02_order_srs/expected/expected.json",
+  "template_path": "文档模板.docx",
+  "sources_path": "../../cases/02_order_srs/sources",
+  "fixed_sections": [
+    {
+      "section_id": "template_0001",
+      "title": "引言、术语与适用版本",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0002",
+      "title": "业务范围与角色权限",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0003",
+      "title": "领域模型与四组状态机",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0004",
+      "title": "商品快照、报价与优惠",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0005",
+      "title": "下单与库存预占",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0006",
+      "title": "支付窗口与并发竞争",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。\n填写说明：下列两张同列名表必须分别保留。第一张整理支付回调与重复消息；第二张整理超时关闭与支付并发。各表独立填写至少一条资料支持的场景，不能合并。",
+      "allow_children": false,
+      "tables": [
+        {
+          "table_id": "template_0006_table_1",
+          "body_index": 17,
+          "headers": [
+            "场景编号",
+            "触发条件",
+            "预期处理",
+            "验收依据"
+          ],
+          "header_rows": 1,
+          "min_data_rows": 1
+        },
+        {
+          "table_id": "template_0006_table_2",
+          "body_index": 18,
+          "headers": [
+            "场景编号",
+            "触发条件",
+            "预期处理",
+            "验收依据"
+          ],
+          "header_rows": 1,
+          "min_data_rows": 1
+        }
+      ]
+    },
+    {
+      "section_id": "template_0007",
+      "title": "取消、履约与门店自提",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0008",
+      "title": "退款、退货与额度控制",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0009",
+      "title": "接口与错误语义",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0010",
+      "title": "数据模型与事件契约",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0011",
+      "title": "补偿、对账与可观测性",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0012",
+      "title": "页面交互与敏感数据权限",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0013",
+      "title": "非功能与运行验收",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0014",
+      "title": "验收矩阵、追溯与待确认",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    }
+  ],
+  "format_expectations": {
+    "normal_latin_font": "Arial",
+    "normal_east_asian_font": "仿宋",
+    "normal_font_size_pt": 10.5,
+    "normal_line_spacing": 1.5,
+    "normal_space_after_pt": 8,
+    "margins_cm": {
+      "top": 2.4,
+      "bottom": 2.2,
+      "left": 2.8,
+      "right": 2.1
+    },
+    "page_size_cm": [
+      21,
+      29.7
+    ],
+    "preserve_header_footer": true,
+    "cover_document_title": "星屿生活全渠道订单中台需求规格说明书"
+  },
+  "forbidden_template_examples": [
+    "北辰旧项目示例",
+    "987654322",
+    "示例负责人"
+  ],
+  "acceptance": [
+    "继承原案例的事实、计算、缺口、图表、覆盖范围和有效字数验收。",
+    "固定章节标题、层级及顺序与模板一致，新增子章节仅位于允许范围。",
+    "每张必填表独立存在，逻辑列名完整匹配，至少有一行资料支持或明确待确认的数据。",
+    "模板原件及其重复上传副本不得进入业务证据索引或全局事实。",
+    "成品删除旧项目示例与填写提示；不把待确认参数伪装成确定事实。",
+    "以真实 Word/PDF 成品检查模板字体、边距、页眉页脚、表头与分页可读性。"
+  ],
+  "variant_checks": [
+    "支付并发章节的两张同列表头表不能合并；分别覆盖回调和超时关闭。"
+  ],
+  "validation_status": "fixture_structure_checked_only",
+  "full_long_document_generation_tested": false,
+  "requires_manual_review": true
+}

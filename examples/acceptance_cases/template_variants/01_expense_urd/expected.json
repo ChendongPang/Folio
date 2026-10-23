@@ -1,0 +1,150 @@
+{
+  "variant_id": "TV01",
+  "base_case_id": "TC01",
+  "name": "固定章节需求说明书",
+  "document_type": "urd",
+  "output_filename": "澄川制造集团费用报销平台需求说明书.docx",
+  "target_chars": {
+    "min": 15000,
+    "max": 20000
+  },
+  "base_expected_path": "../../cases/01_expense_urd/expected/expected.json",
+  "template_path": "文档模板.docx",
+  "sources_path": "../../cases/01_expense_urd/sources",
+  "fixed_sections": [
+    {
+      "section_id": "template_0001",
+      "title": "项目背景与业务目标",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0002",
+      "title": "业务范围与系统边界",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0003",
+      "title": "角色、权限与岗位分离",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0004",
+      "title": "端到端流程与单据状态",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0005",
+      "title": "填单、附件与资料校验",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0006",
+      "title": "费用制度、日期与版本",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0007",
+      "title": "金额、外币与借款计算",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0008",
+      "title": "审批、复核与例外处理",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0009",
+      "title": "付款登记、核对与审计",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0010",
+      "title": "页面原型与交互需求",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0011",
+      "title": "报表与非功能需求",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0012",
+      "title": "验收场景与待确认事项",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    }
+  ],
+  "format_expectations": {
+    "normal_latin_font": "Arial",
+    "normal_east_asian_font": "仿宋",
+    "normal_font_size_pt": 10.5,
+    "normal_line_spacing": 1.5,
+    "normal_space_after_pt": 8,
+    "margins_cm": {
+      "top": 2.4,
+      "bottom": 2.2,
+      "left": 2.8,
+      "right": 2.1
+    },
+    "page_size_cm": [
+      21,
+      29.7
+    ],
+    "preserve_header_footer": true,
+    "cover_document_title": "澄川制造集团费用报销平台需求说明书"
+  },
+  "forbidden_template_examples": [
+    "北辰旧项目示例",
+    "987654321",
+    "示例负责人"
+  ],
+  "acceptance": [
+    "继承原案例的事实、计算、缺口、图表、覆盖范围和有效字数验收。",
+    "固定章节标题、层级及顺序与模板一致，新增子章节仅位于允许范围。",
+    "每张必填表独立存在，逻辑列名完整匹配，至少有一行资料支持或明确待确认的数据。",
+    "模板原件及其重复上传副本不得进入业务证据索引或全局事实。",
+    "成品删除旧项目示例与填写提示；不把待确认参数伪装成确定事实。",
+    "以真实 Word/PDF 成品检查模板字体、边距、页眉页脚、表头与分页可读性。"
+  ],
+  "variant_checks": [
+    "全部章节固定，不接受任意同义改名或增加正文子标题。"
+  ],
+  "validation_status": "fixture_structure_checked_only",
+  "full_long_document_generation_tested": false,
+  "requires_manual_review": true
+}

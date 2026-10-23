@@ -1,0 +1,63 @@
+{
+  "variant_id": "TV08",
+  "base_case_id": "TC08",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "文档模板.docx",
+      "role": "template",
+      "format": "docx",
+      "bytes": 38786,
+      "sha256": "d64461f790d60981ece99877c05c7e316959c675aa18789814316a4dd1454284"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/01_平台建设与业务全景.md",
+      "role": "source",
+      "format": "md",
+      "bytes": 9597,
+      "sha256": "8ccbdbdff293101be14e18ca05da4cf29020e5eaecc7a174f1289cf86c65d330"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/02_领域需求与状态说明.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 43314,
+      "sha256": "918a5eab46db7e4490604a132002753c84195a9a766efd2281eeed50d5da64c6"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/03_对象字段字典.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 24428,
+      "sha256": "11364c8a3da662a182240acc6bcbfac1350098c0d2c6a5cf139cdc0404681417"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/04_接口规则与验收台账.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 17523,
+      "sha256": "b94d06041d640e4f2db4e22f6a03eabea9d40060f3091332c711c8849f464c01"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/05_架构边界与运行约束.pdf",
+      "role": "source",
+      "format": "pdf",
+      "bytes": 681394,
+      "sha256": "6716caa47437e66bb51530418110b35748374484b39881b22798360431628a3c"
+    },
+    {
+      "path": "../../cases/08_data_platform_srs/sources/06_最终补充范围.txt",
+      "role": "source",
+      "format": "txt",
+      "bytes": 1107,
+      "sha256": "fa1d8a1eedc1b51fe45765c1dad796d3ce4b9c5179ea950438b61b6f3980d44a"
+    }
+  ],
+  "do_not_upload": [
+    "expected.json",
+    "manifest.json",
+    "../../cases/08_data_platform_srs/expected/expected.json"
+  ],
+  "user_prompt": "prompt.txt",
+  "notes": "仅检查夹具可解析及约束结构；未进行真实模型长文生成验收。"
+}

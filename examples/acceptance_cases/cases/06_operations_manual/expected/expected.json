@@ -1,0 +1,567 @@
+{
+  "id": "TC06",
+  "name": "平台运维长手册：本地不足、两轮离线搜索与标注补全",
+  "document_type": "general",
+  "output_title": "云栈协同平台运维操作手册",
+  "output_filename": "云栈协同平台_运维操作手册.docx",
+  "target_chars": {
+    "min": 25000,
+    "max": 35000
+  },
+  "audience": [
+    "一线值班人员",
+    "应用和数据库负责人",
+    "新入职运维"
+  ],
+  "focus": [
+    "本地研究最多3轮",
+    "Mock Tavily最多2轮",
+    "资料不足降级与LLM建议标签",
+    "项目事实与外部一般知识区分",
+    "长文操作手册及视觉流程"
+  ],
+  "expected": {
+    "chapters": [
+      {
+        "title": "手册范围、读者与使用方式",
+        "min_chars": 1600,
+        "topics": [
+          "虚构环境",
+          "事实/参考/建议标签",
+          "操作授权边界"
+        ],
+        "source_paths": [
+          "01_运维交付范围.docx"
+        ]
+      },
+      {
+        "title": "系统架构与依赖关系",
+        "min_chars": 2200,
+        "topics": [
+          "服务拓扑",
+          "副本和单点风险",
+          "同步与异步链路"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md"
+        ]
+      },
+      {
+        "title": "角色权限、值守与交接",
+        "min_chars": 1800,
+        "topics": [
+          "工作时段与P1升级",
+          "变更授权",
+          "交接清单"
+        ],
+        "source_paths": [
+          "01_运维交付范围.docx",
+          "04_发布回滚与交接规程.txt"
+        ]
+      },
+      {
+        "title": "环境访问与只读诊断",
+        "min_chars": 1900,
+        "topics": [
+          "命名空间和标签",
+          "占位命令",
+          "日志脱敏和关联字段"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md"
+        ]
+      },
+      {
+        "title": "日常巡检与记录模板",
+        "min_chars": 2100,
+        "topics": [
+          "服务就绪",
+          "备份检查",
+          "趋势观察与证据留存"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md",
+          "04_发布回滚与交接规程.txt"
+        ]
+      },
+      {
+        "title": "指标告警与通知升级",
+        "min_chars": 2600,
+        "topics": [
+          "两项正式阈值",
+          "持续时间和样本门槛",
+          "未批准阈值与P1/P2/P3"
+        ],
+        "source_paths": [
+          "03_告警与指标.xlsx"
+        ]
+      },
+      {
+        "title": "事件分级与处置流程",
+        "min_chars": 2200,
+        "topics": [
+          "受理、影响界定、升级、恢复和复盘",
+          "非值守时段",
+          "不得凭单次事件承诺RTO"
+        ],
+        "source_paths": [
+          "01_运维交付范围.docx",
+          "03_告警与指标.xlsx",
+          "05_历史事件与复盘.docx"
+        ]
+      },
+      {
+        "title": "任务与导出故障排查",
+        "min_chars": 2200,
+        "topics": [
+          "request_id和task_id",
+          "队列积压与幂等",
+          "不可直接删队列"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md",
+          "04_发布回滚与交接规程.txt",
+          "05_历史事件与复盘.docx"
+        ]
+      },
+      {
+        "title": "变更发布与回滚规程",
+        "min_chars": 2500,
+        "topics": [
+          "预发验证与生产批准",
+          "组件顺序",
+          "数据库不兼容变更"
+        ],
+        "source_paths": [
+          "04_发布回滚与交接规程.txt"
+        ]
+      },
+      {
+        "title": "数据库、备份与恢复验证",
+        "min_chars": 2600,
+        "topics": [
+          "02:00备份与7日保留",
+          "恢复演练",
+          "未知WAL/RTO/RPO"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md",
+          "06_演练与容量计划_草稿.pptx"
+        ]
+      },
+      {
+        "title": "附件与对象存储一致性",
+        "min_chars": 1800,
+        "topics": [
+          "元数据与对象键",
+          "版本恢复",
+          "缺失保留周期"
+        ],
+        "source_paths": [
+          "02_架构与环境清单.md",
+          "06_演练与容量计划_草稿.pptx"
+        ]
+      },
+      {
+        "title": "容量管理与阈值制定",
+        "min_chars": 2200,
+        "topics": [
+          "缺失并发基线",
+          "阈值校准流程",
+          "模型建议与项目承诺区别"
+        ],
+        "source_paths": [
+          "03_告警与指标.xlsx",
+          "06_演练与容量计划_草稿.pptx"
+        ]
+      },
+      {
+        "title": "演练方案与新人实操",
+        "min_chars": 2300,
+        "topics": [
+          "隔离演练",
+          "故障注入的审批边界",
+          "记录模板与通过条件建议"
+        ],
+        "source_paths": [
+          "04_发布回滚与交接规程.txt",
+          "05_历史事件与复盘.docx",
+          "06_演练与容量计划_草稿.pptx"
+        ]
+      },
+      {
+        "title": "待决事项、证据追踪与维护",
+        "min_chars": 2000,
+        "topics": [
+          "缺口责任角色",
+          "外部参考局限",
+          "版本维护和批准记录"
+        ],
+        "source_paths": [
+          "01_运维交付范围.docx",
+          "05_历史事件与复盘.docx",
+          "06_演练与容量计划_草稿.pptx"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "F01",
+        "statement": "当前版本3.2.1，资料冻结于2026年10月12日18:00 Asia/Shanghai。",
+        "source": "01_运维交付范围.docx",
+        "locator": "虚构项目和读者",
+        "required_tokens": [
+          "3.2.1",
+          "2026年10月12日",
+          "Asia/Shanghai"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F02",
+        "statement": "值守每日09:00—18:00，非值守P1由应用负责人电话升级，未批准7×24 SLA。",
+        "source": "01_运维交付范围.docx",
+        "locator": "已确认值守边界",
+        "required_tokens": [
+          "09:00",
+          "18:00",
+          "P1"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F03",
+        "statement": "gateway2副本、api3副本、worker2副本，PostgreSQL1主1备。",
+        "source": "02_架构与环境清单.md",
+        "locator": "服务拓扑",
+        "required_tokens": [
+          "gateway",
+          "api",
+          "worker",
+          "1主1备"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F04",
+        "statement": "Redis为单主，未提供自动故障切换方案。",
+        "source": "02_架构与环境清单.md",
+        "locator": "服务拓扑",
+        "required_tokens": [
+          "Redis",
+          "单主"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F05",
+        "statement": "生产命名空间team-prod-sim，预发team-stage-sim。",
+        "source": "02_架构与环境清单.md",
+        "locator": "部署与可观察性",
+        "required_tokens": [
+          "team-prod-sim",
+          "team-stage-sim"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F06",
+        "statement": "监控每60秒抓取，访问、应用和审计日志保存14天。",
+        "source": "02_架构与环境清单.md",
+        "locator": "部署与可观察性",
+        "required_tokens": [
+          "60秒",
+          "14天"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F07",
+        "statement": "AL-01为API P95>1200毫秒持续5分钟且每5分钟至少200请求。",
+        "source": "03_告警与指标.xlsx",
+        "locator": "告警规则 Sheet AL-01",
+        "required_tokens": [
+          "AL-01",
+          "1200",
+          "5分钟",
+          "200"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F08",
+        "statement": "AL-02为API 5xx>2%持续5分钟，使用相同样本门槛。",
+        "source": "03_告警与指标.xlsx",
+        "locator": "告警规则 Sheet AL-02",
+        "required_tokens": [
+          "AL-02",
+          "2%",
+          "5分钟",
+          "200"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F09",
+        "statement": "10:05—10:10样本只有80请求，不满足正式告警门槛。",
+        "source": "03_告警与指标.xlsx",
+        "locator": "采样示例 Sheet",
+        "required_tokens": [
+          "80",
+          "200"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F10",
+        "statement": "数据库每天02:00加密全量备份，保留7天；未提供WAL归档。",
+        "source": "02_架构与环境清单.md",
+        "locator": "数据保护事实",
+        "required_tokens": [
+          "02:00",
+          "7天",
+          "WAL"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F11",
+        "statement": "没有全流程恢复演练结果，备份成功不等于可恢复已验证。",
+        "source": "02_架构与环境清单.md",
+        "locator": "数据保护事实",
+        "required_tokens": [
+          "恢复演练",
+          "备份"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F12",
+        "statement": "生产变更需应用负责人批准，数据库切换、恢复、破坏性清理需数据库负责人确认。",
+        "source": "01_运维交付范围.docx",
+        "locator": "已确认值守边界",
+        "required_tokens": [
+          "应用负责人",
+          "数据库负责人"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F13",
+        "statement": "发布顺序为gateway兼容性确认→api→worker，并先预发验证。",
+        "source": "04_发布回滚与交接规程.txt",
+        "locator": "正常发布",
+        "required_tokens": [
+          "gateway",
+          "api",
+          "worker",
+          "预发"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F14",
+        "statement": "不兼容数据库变更不能仅靠应用镜像回滚，队列积压不可直接删除。",
+        "source": "04_发布回滚与交接规程.txt",
+        "locator": "回滚与失败处置",
+        "required_tokens": [
+          "不兼容",
+          "队列",
+          "回滚"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F15",
+        "statement": "INC-SIM-014从14:05发现到14:32恢复为27分钟，不是RTO承诺。",
+        "source": "05_历史事件与复盘.docx",
+        "locator": "确认的事件事实",
+        "required_tokens": [
+          "INC-SIM-014",
+          "14:05",
+          "14:32",
+          "27分钟"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F16",
+        "statement": "worker于14:18回滚到3.1.9，3.2.1已修正重试幂等缺陷。",
+        "source": "05_历史事件与复盘.docx",
+        "locator": "确认的事件事实",
+        "required_tokens": [
+          "14:18",
+          "3.1.9",
+          "3.2.1",
+          "幂等"
+        ],
+        "severity": "major"
+      },
+      {
+        "id": "F17",
+        "statement": "CPU、磁盘、队列等待和连接使用率阈值未批准，RTO/RPO未知。",
+        "source": "01_运维交付范围.docx",
+        "locator": "确定事项与缺口标记",
+        "required_tokens": [
+          "CPU",
+          "RTO",
+          "RPO",
+          "待确认"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F18",
+        "statement": "季度恢复演练仅为未批准草案，不能写成现行制度。",
+        "source": "06_演练与容量计划_草稿.pptx",
+        "locator": "本文件不是正式SLA",
+        "required_tokens": [
+          "季度",
+          "未批准"
+        ],
+        "severity": "major"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "C01",
+        "description": "历史事件发现至恢复耗时",
+        "source": "05_历史事件与复盘.docx",
+        "formula": "14:32-14:05",
+        "result": 27,
+        "unit": "分钟；仅为历史事件事实"
+      },
+      {
+        "id": "C02",
+        "description": "批准至回滚完成耗时",
+        "source": "05_历史事件与复盘.docx",
+        "formula": "14:18-14:12",
+        "result": 6,
+        "unit": "分钟"
+      },
+      {
+        "id": "C03",
+        "description": "10:00—10:05聚合样例5xx比例",
+        "source": "03_告警与指标.xlsx",
+        "formula": "8/250*100",
+        "result": 3.2,
+        "unit": "%；单聚合样例不足以证明持续条件"
+      },
+      {
+        "id": "C04",
+        "description": "低样本窗口5xx比例",
+        "source": "03_告警与指标.xlsx",
+        "formula": "5/80*100",
+        "result": 6.25,
+        "unit": "%；80<200不满足正式样本门槛"
+      }
+    ],
+    "must_not_claim": [
+      "本项目已经批准RTO30分钟或RPO24小时",
+      "本项目默认CPU80%、磁盘剩余10%就是正式阈值",
+      "3个api副本确定支持某个并发或日活数字",
+      "已实施全年7×24服务和固定分钟数响应承诺",
+      "每天备份能证明支持任意时间点恢复",
+      "备份作业成功等同恢复演练通过",
+      "INC-SIM-014的27分钟就是未来恢复承诺",
+      "80请求窗口达到正式告警触发条件",
+      "季度恢复演练已成为正式制度",
+      "Mock Tavily的example.invalid页面是真实权威外网证据",
+      "将一般建议写成已确认的项目事实",
+      "所有真实模型运行必须耗满3轮本地和2轮网络"
+    ],
+    "gaps": [
+      {
+        "topic": "RTO/RPO",
+        "reason": "本地未批准，Mock网页只有目标制定方法",
+        "expected_handling": "保留待确认和责任角色；提供业务影响分析、演练测量和审批模板；若示例数值必须显著写假设，不进入事实表"
+      },
+      {
+        "topic": "CPU/磁盘/队列/连接阈值",
+        "reason": "阈值Sheet为待定，Mock网页无项目基线",
+        "expected_handling": "提供标注LLM建议的阈值制定流程，不替换正式API阈值，不假装联网证实内部阈值"
+      },
+      {
+        "topic": "恢复能力与容量",
+        "reason": "无恢复演练证据、WAL配置和并发基线",
+        "expected_handling": "写出待验证项、演练步骤和证据收集；不声称已达成恢复或吞吐指标"
+      },
+      {
+        "topic": "对象存储版本保留周期",
+        "reason": "只知开启版本保留，不知周期",
+        "expected_handling": "保留周期待确认；一致恢复流程包含版本校验"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "flowchart",
+        "title": "系统服务与数据依赖图",
+        "requirements": [
+          "gateway→api→PostgreSQL/Redis；worker消费Redis队列并写对象存储",
+          "明确副本及Redis单主",
+          "不添加未证实跨地域容灾和自动故障切换"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "告警到事件恢复流程",
+        "requirements": [
+          "样本门槛、持续时间、角色升级、只读排查与审批区分",
+          "未批准阈值显示待确认",
+          "恢复后验证、证据记录与复盘闭环"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "发布失败与回滚决策",
+        "requirements": [
+          "先预发验证及批准",
+          "检查不兼容数据库变更分支",
+          "回滚使用变更单记录的已验证版本，未知时不能猜版本"
+        ]
+      }
+    ],
+    "acceptance": [
+      "正文25000—35000字，14章覆盖运维全流程；每个主要Runbook包含触发、权限、输入、步骤、验证和升级。",
+      "源资料事实、Mock外部参考、LLM建议和待确认参数在正文、表格、流程图中可辨，不混入全局项目事实。",
+      "所有正式阈值保持1200毫秒/2%、连续5分钟、至少200请求；不能只看单窗口超标或忽略样本。",
+      "离线状态机测试按execution.expected_transition检查3轮本地上限、最多2次Mock搜索、最后标注补全；充分证据路径可以提前停止。",
+      "在每个阶段结束后模拟恢复，累计研究/搜索次数不因新会话或重试被重置；第二次搜索已落盘未评估时应先评估该结果。",
+      "未解决内部参数继续出现在最终待决表，不因一般外部参考或模型写作变成确认事实。",
+      "案例只生成文件与示例步骤，不执行任何运维命令、不调用真实Tavily、不需要密钥。",
+      "Word具备目录、页码、统一步骤编号、可读代码块和长表；图中文字与正文规则一致。"
+    ]
+  },
+  "execution": {
+    "web_mode": "mock",
+    "local_round_limit": 3,
+    "web_round_limit": 2,
+    "notes": [
+      "mock_web位于测试配方而非sources，测试驱动应将其注入Tavily适配器；不得让业务Agent在本地读取预置搜索结果或验收答案。",
+      "只上传sources并用真实模型自由研究，不能保证正好耗满3+2；自动状态机用受控研究决策和充分性判断测试替身强制缺口持续存在。",
+      "每一轮可包含多个受预算约束工具调用；轮数不能被解释成最多3个本地工具调用。",
+      "模型可直接生成流程建议；所有内部确定数字仍必须来自原资料或明确人工批准，不以Mock网页替代。"
+    ],
+    "expected_transition": {
+      "test_setup": "离线驱动使用当前Runtime接口的受控模型替身，前3次本地轮次的充分性判定均为false，固定缺口为项目RTO/RPO和4项未批准监控阈值；每轮包含可实际完成的本地导航/读取；配置足够步数、时间和调用预算以隔离轮数边界。禁止任何真实HTTP调用。",
+      "steps": [
+        "本地轮1：读取Manifest/环境边界和告警结构，保留缺口。",
+        "本地轮2：定位备份、演练草案与历史事件，仍判定不足。",
+        "本地轮3：核对全部相关原文与历史证据，仍判定不足；不允许进入第4本地轮。",
+        "注入mock_web.rounds[0]作为第1次Tavily结果，充分性替身仍为false。",
+        "注入mock_web.rounds[1]作为第2次Tavily结果，充分性替身仍为false；不允许第3次搜索。",
+        "进入LLM标注补全，生成建议步骤和待确认表，原始资料覆盖状态与未解决内部事实保持真实。"
+      ],
+      "assertions": [
+        "local_rounds_used == 3（仅此强制不足分支）",
+        "web_search_attempts == 2（仅此已配置且预算充足分支）",
+        "实际联网请求数 == 0",
+        "第4本地轮和第3次搜索均不存在",
+        "补全发生在第2搜索结果评估之后",
+        "输出保留内部阈值/RTO/RPO待确认并标记LLM建议",
+        "另测第1/2轮资料充分时提前完成，不强制耗尽预算"
+      ]
+    }
+  },
+  "counting_method": "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代。"
+}

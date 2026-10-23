@@ -1,0 +1,51 @@
+id: urd
+version: 2
+name: 用户需求说明书
+purpose: Help business stakeholders clarify needs, scope and expected value
+audience: [Customers, Business stakeholders, Product managers, Project managers]
+
+guidance_policy:
+  mode: advisory
+  extra_review: false
+  retry_for_guidance: false
+  block_delivery: false
+
+writing:
+  perspective: Describe requirements from the perspective of business stakeholders and actual users
+  style: Use clear business language and avoid unnecessary technical jargon
+  detail: Prioritize business problems, scenarios and rules, elaborating details as needed
+  organization: Follow the template and directory without imposing a fixed section structure
+
+focus:
+  business_goals:
+    - Explain current problems, user pain points and project goals
+    - Explain expected business value without vague claims
+  scope:
+    - Describe the business, users and usage scope involved
+    - Clearly state boundaries when phases or exclusions are defined
+  scenarios:
+    - Explain who needs to accomplish what business task and in which scenario
+    - Describe the main business process and expected results
+    - Explain business handling requirements for significant exceptions and failure scenarios
+  business_rules:
+    - Explain rules affecting business decisions, permissions and processing results
+    - Address role responsibilities and handoffs between business stages
+    - Preserve applicability conditions, restrictions and exceptions
+  expectations:
+    - Express performance, availability and usability expectations through business impact
+    - Preserve established metrics and honestly identify those not yet determined
+
+visuals:
+  - Use business flowcharts when they clarify workflow and role collaboration
+  - Use UI prototypes when they help stakeholders understand operational scenarios
+  - Figures should serve the content; not every section needs one
+source_policy:
+  - Distinguish existing business evidence from model-proposed designs
+  - Highlight model proposals in red according to existing provenance rules
+  - Do not invent regulations, people, dates, versions or approval records
+avoid:
+  - Expanding into system architecture, code or physical database design without being asked
+  - Turning business needs into technical implementation plans
+  - Adding irrelevant functions merely to appear comprehensive
+  - Repeating identical background and business rules in every section
+  - Presenting unresolved business matters as confirmed conclusions

@@ -1,0 +1,55 @@
+{
+  "case_id": "TC04",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_项目边界与访谈.docx",
+      "kind": "docx",
+      "title": "澄川客服工单中心：项目边界及访谈纪要",
+      "bytes": 38475,
+      "sha256": "5cfb2cccf256f6312e47d6030ce619689db8d6cf46248b073fb87a646d7fd7a9"
+    },
+    {
+      "path": "02_服务承诺V1.md",
+      "kind": "md",
+      "title": "服务承诺 V1.4：已发布的基础规则",
+      "bytes": 1555,
+      "sha256": "95812c50e620dfdc16adeb0d9085ed5e6e729efccf200408d0ba7caf1f511e0d"
+    },
+    {
+      "path": "03_大陆企业专项V2_已批准.docx",
+      "kind": "docx",
+      "title": "大陆企业客户服务专项 V2.0：批准件",
+      "bytes": 38232,
+      "sha256": "8791bbd421bac47588c730dcb53260721ac6a1235490d4f6952208dc19776438"
+    },
+    {
+      "path": "04_路线图V3_未批准.pptx",
+      "kind": "pptx",
+      "title": "工单中心路线图 V3.0 草案",
+      "bytes": 30847,
+      "sha256": "7c0fffb5728747cc701b739af0d6be1945c5902817442ca8210a463939f54965"
+    },
+    {
+      "path": "05_关闭规则冲突会议.txt",
+      "kind": "txt",
+      "title": "关闭规则争议与待办，2026年10月11日",
+      "bytes": 1327,
+      "sha256": "4b058fe0180ce51ebc9cb8f22c4d21cb45bd97e9f9b74e21dde8096954b1693e"
+    },
+    {
+      "path": "06_角色与权限.xlsx",
+      "kind": "xlsx",
+      "title": "角色权限和状态动作清单",
+      "bytes": 7035,
+      "sha256": "7d9f8ff49ce3b229064a3e122641ef4cc222117875f4f6218fa297be0170be32"
+    },
+    {
+      "path": "07_工单详情原型.png",
+      "kind": "png",
+      "title": "工单详情页业务线框",
+      "bytes": 151582,
+      "sha256": "0ccb86490ee21b36e461fa06a891fb5b2501911e1cc332a26e99eac09546c671"
+    }
+  ]
+}

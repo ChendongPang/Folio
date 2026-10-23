@@ -1,0 +1,38 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+node_modules/
+.folio/
+dist/
+*.egg-info/
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Local runs, uploads, generated documents and machine configuration.
+/artifacts/
+/build/
+/htmlcov/
+.coverage
+.coverage.*
+*.sqlite3
+*.sqlite3-*
+*.log
+*.local.json
+*.local.yaml
+*.local.yml
+
+# User-provided business documents and original artwork stay in the workspace.
+/*.docx
+/ChatGPT Image*.png
+*:Zone.Identifier
+/examples/template.docx
+
+# Editor and operating-system files.
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

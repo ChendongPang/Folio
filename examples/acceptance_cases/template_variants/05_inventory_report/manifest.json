@@ -1,0 +1,63 @@
+{
+  "variant_id": "TV05",
+  "base_case_id": "TC05",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "文档模板.docx",
+      "role": "template",
+      "format": "docx",
+      "bytes": 38998,
+      "sha256": "f33c5e773a85378d7a5f4523376c3b347baebda487493c9a6645280f98c61254"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/01_分析委托与口径.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 38605,
+      "sha256": "ce45d31e9f7a112612db3931d6d5bdf8285bc4d5faaa7f10ec4967153910fb82"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/02_九月销售与退款.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 8558,
+      "sha256": "ad2db9a9e70d85be5cdc01ce5badd5eaeec20d2a33df557d780bbffcb18dcaa1"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/03_库存与采购.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 8260,
+      "sha256": "e90621fac5b23d2088a2358cfbacd5c86d4d643f10161687bc2746066b69facf"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/04_补货规则.md",
+      "role": "source",
+      "format": "md",
+      "bytes": 1325,
+      "sha256": "88695dfadcef77fb1cad3c715b5c3b420b3f6fad082d640a3128e36a790d9bfe"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/05_经营复盘访谈.txt",
+      "role": "source",
+      "format": "txt",
+      "bytes": 1000,
+      "sha256": "a32cc121919851249da8189fe92a963d50b20238af88899e087a1e1529f6139a"
+    },
+    {
+      "path": "../../cases/05_inventory_report/sources/06_汇报框架.pptx",
+      "role": "source",
+      "format": "pptx",
+      "bytes": 30823,
+      "sha256": "a5d2986ef1365ffa2198cc675c4f2596caab977830f092d85181a5856c5ef676"
+    }
+  ],
+  "do_not_upload": [
+    "expected.json",
+    "manifest.json",
+    "../../cases/05_inventory_report/expected/expected.json"
+  ],
+  "user_prompt": "prompt.txt",
+  "notes": "仅检查夹具可解析及约束结构；未进行真实模型长文生成验收。"
+}

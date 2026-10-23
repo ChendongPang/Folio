@@ -1,0 +1,14 @@
+{
+  "title": "外汇交易需求说明书",
+  "document_id": "fx-ragflow-example",
+  "ragflow": {
+    "url": "http://localhost:9382/mcp",
+    "dataset_ids": [
+      "replace-with-your-dataset-id"
+    ],
+    "similarity_threshold": 0.2,
+    "vector_similarity_weight": 0.3
+  },
+  "runtime": "llm",
+  "user_request": "根据知识库编写外汇交易需求说明书，说明交易录入、查询与撤销审批规则。"
+}

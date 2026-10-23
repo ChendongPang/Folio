@@ -1,0 +1,48 @@
+{
+  "case_id": "TC09",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_演练章程与职责.docx",
+      "kind": "docx",
+      "title": "澄川演示平台连续性演练章程与职责",
+      "bytes": 39180,
+      "sha256": "1bfea7cd904ac04dab3795769923cf1d8429e91ef68fa487f6b02b8ad0390106"
+    },
+    {
+      "path": "02_时间指标决策与记录.xlsx",
+      "kind": "xlsx",
+      "title": "时区、指标、角色、决策与记录工作簿",
+      "bytes": 16523,
+      "sha256": "4fccb10fe2c4b9098e4145f3e89ade3d89e1172e42e0ecdce751a8e53d707234"
+    },
+    {
+      "path": "03_系统依赖与执行手册.md",
+      "kind": "md",
+      "title": "系统依赖与分阶段执行手册",
+      "bytes": 7111,
+      "sha256": "d7077fcd030524d6fd948cc3144aa26dfe175670fddc84e0a994a3ad2ee4fc24"
+    },
+    {
+      "path": "04_场景注入卡.pdf",
+      "kind": "pdf",
+      "title": "六张受控场景注入卡",
+      "bytes": 864632,
+      "sha256": "aaf4055a1ec0a630012c20290a5930ad8d07168b2f3d1a42b0c7d899d51e24c7"
+    },
+    {
+      "path": "05_沟通与交接培训.pptx",
+      "kind": "pptx",
+      "title": "沟通、交接与复盘培训",
+      "bytes": 36201,
+      "sha256": "25e335fa7e121804e88f55da8b8c915d02194ef146e606d9cf09c74eea8213ea"
+    },
+    {
+      "path": "06_模拟复盘记录.txt",
+      "kind": "txt",
+      "title": "合成复盘记录：可计算示例与遗留项",
+      "bytes": 1806,
+      "sha256": "b36e06c2310bc1dca043f31638e94094b4ff9080c157d87de179d9cc3bc9445e"
+    }
+  ]
+}

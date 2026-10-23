@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "counting_method": "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代。",
+  "cases": [
+    {
+      "id": "TC01",
+      "name": "澄川制造集团费用报销需求说明书",
+      "path": "01_expense_urd",
+      "document_type": "urd",
+      "output_filename": "澄川制造集团费用报销平台需求说明书.docx",
+      "target_chars": {
+        "min": 15000,
+        "max": 20000
+      },
+      "source_count": 6,
+      "source_bytes": 91959,
+      "formats": [
+        "docx",
+        "md",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 12,
+      "fact_count": 18,
+      "focus": [
+        "制度版本取舍",
+        "3000/20000 元审批精确边界",
+        "垫款抵扣及逐行四舍五入",
+        "跨章节全局事实一致",
+        "角色隔离与例外流程",
+        "业务流程图和页面原型",
+        "长文档去重复与 Word 排版"
+      ]
+    },
+    {
+      "id": "TC02",
+      "name": "星屿生活全渠道订单中台需求规格说明书",
+      "path": "02_order_srs",
+      "document_type": "srs",
+      "output_filename": "星屿生活全渠道订单中台需求规格说明书.docx",
+      "target_chars": {
+        "min": 25000,
+        "max": 35000
+      },
+      "source_count": 7,
+      "source_bytes": 95434,
+      "formats": [
+        "docx",
+        "md",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 14,
+      "fact_count": 20,
+      "focus": [
+        "多来源接口契约整合",
+        "支付与超时并发竞态",
+        "状态机和幂等",
+        "异步最终一致性",
+        "分摊舍入与部分退款",
+        "版本冲突",
+        "长规格书逐项可验收"
+      ]
+    },
+    {
+      "id": "TC03",
+      "name": "砺川精工制造质量追溯需求规格说明书",
+      "path": "03_traceability_srs",
+      "document_type": "srs",
+      "output_filename": "砺川精工制造质量追溯平台需求规格说明书.docx",
+      "target_chars": {
+        "min": 35000,
+        "max": 45000
+      },
+      "source_count": 7,
+      "source_bytes": 112258,
+      "formats": [
+        "docx",
+        "md",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 16,
+      "fact_count": 24,
+      "focus": [
+        "大型多Sheet表格渐进读取",
+        "98个实际业务字段",
+        "隐藏Sheet与公式识别",
+        "跨表外键和有向批次谱系",
+        "单位隔离与拆分重复计数",
+        "异常和历史版本隔离",
+        "长SRS与追溯图一致"
+      ]
+    },
+    {
+      "id": "TC04",
+      "name": "客服工单用户需求说明书：版本与范围冲突",
+      "path": "04_service_urd",
+      "document_type": "urd",
+      "output_filename": "澄川客服工单中心_用户需求说明书.docx",
+      "target_chars": {
+        "min": 20000,
+        "max": 30000
+      },
+      "source_count": 7,
+      "source_bytes": 269053,
+      "formats": [
+        "docx",
+        "md",
+        "png",
+        "pptx",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 12,
+      "fact_count": 18,
+      "focus": [
+        "规则版本和生效范围",
+        "未决冲突保留",
+        "全局事实一致性",
+        "原型与业务权限一致",
+        "长文需求追踪"
+      ]
+    },
+    {
+      "id": "TC05",
+      "name": "库存补货经营分析报告：表格计算与可复核金标",
+      "path": "05_inventory_report",
+      "document_type": "general",
+      "output_filename": "澜舟耗材_2026年9月库存与补货分析报告.docx",
+      "target_chars": {
+        "min": 18000,
+        "max": 25000
+      },
+      "source_count": 6,
+      "source_bytes": 88571,
+      "formats": [
+        "docx",
+        "md",
+        "pptx",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 12,
+      "fact_count": 17,
+      "focus": [
+        "多Sheet和隐藏Sheet导航",
+        "整数金额与时区边界",
+        "退款状态与排除规则",
+        "Python精确计算和派生证据",
+        "长报告的数字全局一致"
+      ]
+    },
+    {
+      "id": "TC06",
+      "name": "平台运维长手册：本地不足、两轮离线搜索与标注补全",
+      "path": "06_operations_manual",
+      "document_type": "general",
+      "output_filename": "云栈协同平台_运维操作手册.docx",
+      "target_chars": {
+        "min": 25000,
+        "max": 35000
+      },
+      "source_count": 6,
+      "source_bytes": 118768,
+      "formats": [
+        "docx",
+        "md",
+        "pptx",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 14,
+      "fact_count": 18,
+      "focus": [
+        "本地研究最多3轮",
+        "Mock Tavily最多2轮",
+        "资料不足降级与LLM建议标签",
+        "项目事实与外部一般知识区分",
+        "长文操作手册及视觉流程"
+      ]
+    },
+    {
+      "id": "TC07",
+      "name": "青岚大学一站式校园服务门户：多模态例外与业务边界",
+      "path": "07_campus_urd",
+      "document_type": "urd",
+      "output_filename": "青岚大学校园服务门户_用户需求说明书.docx",
+      "target_chars": {
+        "min": 25000,
+        "max": 35000
+      },
+      "source_count": 6,
+      "source_bytes": 743276,
+      "formats": [
+        "docx",
+        "md",
+        "pdf",
+        "png",
+        "pptx",
+        "xlsx"
+      ],
+      "chapter_count": 14,
+      "fact_count": 15,
+      "focus": [
+        "PPT和Word交叉研究",
+        "原型图文字与状态辨识",
+        "混合PDF逐页完整性",
+        "只在图片中的关键例外",
+        "范围冲突裁决",
+        "14章长文一致性"
+      ]
+    },
+    {
+      "id": "TC08",
+      "name": "星澜数据治理平台：108字段、48接口与超长范围覆盖",
+      "path": "08_data_platform_srs",
+      "document_type": "srs",
+      "output_filename": "星澜数据治理平台_软件需求规格说明书.docx",
+      "target_chars": {
+        "min": 50000,
+        "max": 65000
+      },
+      "source_count": 6,
+      "source_bytes": 777363,
+      "formats": [
+        "docx",
+        "md",
+        "pdf",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 14,
+      "fact_count": 18,
+      "focus": [
+        "12个Sheet的渐进读取",
+        "108字段完整覆盖",
+        "48接口与48规则追溯",
+        "末尾范围召回",
+        "长文术语版本一致",
+        "分母去重计算",
+        "恢复与状态边界"
+      ]
+    },
+    {
+      "id": "TC09",
+      "name": "澄川演示平台业务连续性演练手册：跨部门、时区与长决策表",
+      "path": "09_continuity_handbook",
+      "document_type": "general",
+      "output_filename": "澄川演示平台_业务连续性演练执行手册.docx",
+      "target_chars": {
+        "min": 30000,
+        "max": 40000
+      },
+      "source_count": 6,
+      "source_bytes": 965453,
+      "formats": [
+        "docx",
+        "md",
+        "pdf",
+        "pptx",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 14,
+      "fact_count": 17,
+      "focus": [
+        "通用长文档而非需求规格模板",
+        "跨部门协作与批准边界",
+        "UTC和Asia/Shanghai统一",
+        "RTO/RPO推导",
+        "恢复与启动状态区分",
+        "48行决策表跨页排版",
+        "失败证据与整改闭环"
+      ]
+    },
+    {
+      "id": "TC10",
+      "name": "集团一体化运营平台超长SRS",
+      "path": "10_enterprise_srs",
+      "document_type": "srs",
+      "output_filename": "青禾集团一体化运营平台_SRS_V1.0.docx",
+      "target_chars": {
+        "min": 80000,
+        "max": 100000
+      },
+      "source_count": 148,
+      "source_bytes": 317037,
+      "formats": [
+        "docx",
+        "md",
+        "txt",
+        "xlsx"
+      ],
+      "chapter_count": 17,
+      "fact_count": 22,
+      "focus": [
+        "148份资料的Manifest分页",
+        "12业务域、144需求卡、48接口覆盖",
+        "8万至10万字长文与全局一致性",
+        "末尾变更、隐藏Sheet、历史指标",
+        "长表排版与暂停恢复"
+      ]
+    }
+  ]
+}

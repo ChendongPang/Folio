@@ -1,0 +1,166 @@
+{
+  "variant_id": "TV08",
+  "base_case_id": "TC08",
+  "name": "允许子章节扩展的长文规格书",
+  "document_type": "srs",
+  "output_filename": "星澜数据治理平台_软件需求规格说明书.docx",
+  "target_chars": {
+    "min": 50000,
+    "max": 65000
+  },
+  "base_expected_path": "../../cases/08_data_platform_srs/expected/expected.json",
+  "template_path": "文档模板.docx",
+  "sources_path": "../../cases/08_data_platform_srs/sources",
+  "fixed_sections": [
+    {
+      "section_id": "template_0001",
+      "title": "项目目标、范围和术语",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0002",
+      "title": "总体业务协作与系统边界",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0003",
+      "title": "身份、权限与通用交互合同",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0004",
+      "title": "来源接入与数据集管理",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0005",
+      "title": "字段治理与业务术语",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0006",
+      "title": "质量规则与执行规格",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0007",
+      "title": "质量问题与复核闭环",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0008",
+      "title": "血缘采集、影响与版本差异",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0009",
+      "title": "访问申请与到期撤销",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0010",
+      "title": "交付、文件与通知",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0011",
+      "title": "变更审批与回滚",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0012",
+      "title": "归档恢复与保留冻结",
+      "level": 1,
+      "instruction": "填写说明：允许根据业务需要增加子章节；保留本章标题、位置和已有章节顺序。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": true,
+      "tables": []
+    },
+    {
+      "section_id": "template_0013",
+      "title": "运行质量、容量与可观测性",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    },
+    {
+      "section_id": "template_0014",
+      "title": "全量需求追溯与验收设计",
+      "level": 1,
+      "instruction": "填写说明：不得新增子章节或修改目录；用段落和表格展开本章内容。从业务资料研究本章主题；缺少依据的参数明确待确认。",
+      "allow_children": false,
+      "tables": []
+    }
+  ],
+  "format_expectations": {
+    "normal_latin_font": "Arial",
+    "normal_east_asian_font": "仿宋",
+    "normal_font_size_pt": 10.5,
+    "normal_line_spacing": 1.5,
+    "normal_space_after_pt": 8,
+    "margins_cm": {
+      "top": 2.4,
+      "bottom": 2.2,
+      "left": 2.8,
+      "right": 2.1
+    },
+    "page_size_cm": [
+      21,
+      29.7
+    ],
+    "preserve_header_footer": true,
+    "cover_document_title": "星澜数据治理平台软件需求规格说明书"
+  },
+  "forbidden_template_examples": [
+    "北辰旧项目示例",
+    "987654328",
+    "示例负责人"
+  ],
+  "acceptance": [
+    "继承原案例的事实、计算、缺口、图表、覆盖范围和有效字数验收。",
+    "固定章节标题、层级及顺序与模板一致，新增子章节仅位于允许范围。",
+    "每张必填表独立存在，逻辑列名完整匹配，至少有一行资料支持或明确待确认的数据。",
+    "模板原件及其重复上传副本不得进入业务证据索引或全局事实。",
+    "成品删除旧项目示例与填写提示；不把待确认参数伪装成确定事实。",
+    "以真实 Word/PDF 成品检查模板字体、边距、页眉页脚、表头与分页可读性。"
+  ],
+  "variant_checks": [
+    "第 3 至 12 章允许新增子章节，其他固定章节不能扩展；不靠重复内容达到字数。"
+  ],
+  "validation_status": "fixture_structure_checked_only",
+  "full_long_document_generation_tested": false,
+  "requires_manual_review": true
+}

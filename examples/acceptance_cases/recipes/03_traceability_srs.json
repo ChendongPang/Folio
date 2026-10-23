@@ -1,0 +1,2703 @@
+{
+  "id": "TC03",
+  "slug": "03_traceability_srs",
+  "name": "砺川精工制造质量追溯需求规格说明书",
+  "document_type": "srs",
+  "output_title": "砺川精工制造质量追溯平台需求规格说明书",
+  "output_filename": "砺川精工制造质量追溯平台需求规格说明书.docx",
+  "target_chars": {
+    "min": 35000,
+    "max": 45000
+  },
+  "audience": [
+    "制造与质量负责人",
+    "MES研发团队",
+    "数据集成团队",
+    "工厂测试与验收组"
+  ],
+  "focus": [
+    "大型多Sheet表格渐进读取",
+    "98个实际业务字段",
+    "隐藏Sheet与公式识别",
+    "跨表外键和有向批次谱系",
+    "单位隔离与拆分重复计数",
+    "异常和历史版本隔离",
+    "长SRS与追溯图一致"
+  ],
+  "prompt": "请依据上传的虚构砺川精工业务资料，编写《砺川精工制造质量追溯平台需求规格说明书》，输出一个Word .docx，正文35000～45000个中文可见字符。文档面向制造质量负责人、MES研发、数据集成及工厂验收人员，应完整覆盖工单、来料、投料、工序、检验、质量处置、批次关系、发运、召回、接口、数据模型、权限、异常恢复和非功能要求。请充分研究工作簿中各实体定义与关联样例，至少详细描述60个不同字段的类型、必填条件和业务约束，不要只复制表头或重复相同定义。围绕来料RM-AL-240601给出一组完整的正向追溯示例，围绕发运SH-001给出反向追溯示例，展示数量、关系、涉及的客户和证据来源，说明有哪些信息仍然缺失。请复算资料中相关数量、抽样判定和统计，解释拆分、冻结、复检、离线采集与事件重放下的处理方式，并梳理不同版本规则的适用范围。需要追溯关系图、质量异常处理流程、离线恢复流程，以及批次详情、质量处置和召回工作台页面原型。需求要具有前置条件、正常/异常路径和可执行验收标准；关键字段、状态、数量及权限在各章节、图和原型中保持一致。章节详细但不重复凑字数，来源注明文件及章节或Sheet。没有确认的业务或技术事项单独列出，补充方案明确标为建议。Word应提供自动目录、标题编号、页码、图表题注和长表重复表头，并检查大图裁切、跨页阅读与字号一致性。仅使用提供资料，不进行真实联网查询。",
+  "sources": [
+    {
+      "path": "01_制造质量调研.docx",
+      "kind": "docx",
+      "title": "制造与质量追溯调研（虚构工厂 2026-06-15）",
+      "sections": [
+        {
+          "heading": "1 工厂与项目边界",
+          "text": [
+            "砺川精工为虚构工业零部件企业，一期覆盖常州一厂的两条机加工装配线，产品MTR-08为泵体支架、MTR-12为设备连接座，成品计量单位为件。来料铝材AL-6061按kg管理，紧固件BOLT-M8按件管理。跨工厂调拨、委外生产、成本核算和监管申报不在一期。",
+            "ERP下发工单与物料主数据；追溯平台负责在车间采集关联证据、执行已批准质量规则、提供追溯与召回范围，不替代ERP总账和采购。设备仅提供采集数据，不因接入平台自动获得控制指令能力。"
+          ]
+        },
+        {
+          "heading": "2 核心业务链",
+          "text": [
+            "来料批次经入库检验后投向工单与成品根批，成品经过热处理、装配、出厂检验后放行。为满足客户订单，一个已检验的根批可以按实际数量拆分为多个子批；投料和原工序记录保留在根批，子批沿谱系继承，不能复制为新原始事实。",
+            "现场允许多个来料批共同投入一个根批，同一来料批也可用于多个根批；正向和反向追溯都必须处理多对多。一个子批只能有一个直接父批；一期不允许将不同根批混合后生成一个新批，合批需求需单独审批。"
+          ]
+        },
+        {
+          "heading": "3 角色与岗位隔离",
+          "text": [
+            "操作员负责本线扫码、投料、工序报工，不能放行质量冻结。检验员填写原始检验，复核员审核检验内容，正式放行需要QA_RELEASE权限。检验员不能复核自己的检验，原检验员也不能解冻该异常。仓管执行收发与物理隔离，销售客服查看被授权客户的召回单，不得查看设备维护备注与其他客户数据。",
+            "工厂质量负责人可批准报废、返工、让步接收或解冻；让步接收必须关联客户书面同意编号，资料没有同意编号时不得默认同意。管理员维护账号和规则，修改已批准规则需要版本发布，不可原地覆盖历史。"
+          ]
+        },
+        {
+          "heading": "4 追溯与召回业务目标",
+          "text": [
+            "质量预警以某供应商批号或内部来料批号为起点，系统需找出全部受影响根批、当前叶批、现场数量、发运记录和客户地点。召回单只是通知与跟踪，不自动增加现场库存，也不自动把已发运数量减掉；收到实物并确认退回才发生库存变化。",
+            "追溯结果需包含数据截至时间与完整性说明。缺少投料、离线事件未上传或批次引用失效时必须显示不完整及缺口，不能因为查到部分路径就声称100%追溯。"
+          ]
+        },
+        {
+          "heading": "5 使用环境",
+          "text": [
+            "车间使用工业平板与扫码枪，网络偶发中断。设备采集网关最多可离线缓存24小时事件；端侧缓存持久化，不允许只放浏览器内存。离线期间不允许新的质量放行和发运，已有采集事件可以记录并在联网后重放。已冻结物料在离线界面要保持冻结提示，不能因无法获取最新状态显示可用。"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "02_追溯数据与样例.xlsx",
+      "kind": "xlsx",
+      "title": "追溯字段、业务样例与计算表（截至2026-06-22 17:00+08:00）",
+      "sheets": [
+        {
+          "name": "阅读说明",
+          "headers": [
+            "项目",
+            "说明"
+          ],
+          "rows": [
+            [
+              "数据截至",
+              "2026-06-22T17:00:00+08:00；所有数字是该时点快照"
+            ],
+            [
+              "关联键",
+              "工单wo_id→成品批次wo_id；投料material_lot_id→来料批次；检验/工序/发货/冻结batch_id→成品批次；拆分关系parent/child→成品批次"
+            ],
+            [
+              "字段字典",
+              "字段ID用于内部定义；同名字段按实体区分，不得把不同实体status视为同一状态机"
+            ],
+            [
+              "隐藏Sheet",
+              "状态字典为正常业务配置，保存枚举和角色权限；隐藏仅是阅读布局，不表示敏感或无效"
+            ],
+            [
+              "公式",
+              "产量核对表H/I列为真实Excel公式；解析器可能没有计算缓存，应根据输入复算"
+            ],
+            [
+              "生产数量",
+              "只统计无父根批initial_qty为原始产量；子批initial_qty是内部转入，不能重复算"
+            ],
+            [
+              "现场与可用",
+              "冻结保留on_hand_qty，available_qty为0；不得把冻结视为现场数量为0"
+            ],
+            [
+              "单位",
+              "铝材消耗kg与成品件分开显示；不能合计为一个无单位数字"
+            ],
+            [
+              "凭证路径",
+              "proof/SH-001.pdf等是业务凭证字段样例，本资料包未附凭证文件，不代表凭证已被阅读验证"
+            ]
+          ]
+        },
+        {
+          "name": "字段字典",
+          "headers": [
+            "字段ID",
+            "实体",
+            "字段名",
+            "中文名",
+            "类型",
+            "必填条件",
+            "业务约束"
+          ],
+          "rows": [
+            [
+              "D001",
+              "work_order",
+              "wo_id",
+              "工单编号",
+              "string(40)",
+              "是",
+              "全厂唯一；关联工单Sheet.wo_id"
+            ],
+            [
+              "D002",
+              "work_order",
+              "product_code",
+              "成品物料编码",
+              "string(32)",
+              "是",
+              "必须存在于已发布产品主数据"
+            ],
+            [
+              "D003",
+              "work_order",
+              "recipe_version",
+              "工艺配方版本",
+              "string(24)",
+              "是",
+              "投产时冻结版本，不随主数据更新改历史"
+            ],
+            [
+              "D004",
+              "work_order",
+              "plan_qty",
+              "计划数量",
+              "decimal(18,3)",
+              "是",
+              "大于0，计量单位为该产品单位"
+            ],
+            [
+              "D005",
+              "work_order",
+              "unit",
+              "成品计量单位",
+              "enum",
+              "是",
+              "本次样例件；禁止与kg直接相加"
+            ],
+            [
+              "D006",
+              "work_order",
+              "line_id",
+              "生产线编码",
+              "string(24)",
+              "是",
+              "设备与操作者必须授权该线"
+            ],
+            [
+              "D007",
+              "work_order",
+              "planned_start",
+              "计划开始时间",
+              "datetime",
+              "是",
+              "带时区；不得晚于计划结束"
+            ],
+            [
+              "D008",
+              "work_order",
+              "planned_end",
+              "计划结束时间",
+              "datetime",
+              "是",
+              "不早于计划开始"
+            ],
+            [
+              "D009",
+              "work_order",
+              "actual_start",
+              "实际开始时间",
+              "datetime",
+              "否",
+              "开工事件写入；未开工为空"
+            ],
+            [
+              "D010",
+              "work_order",
+              "actual_end",
+              "实际结束时间",
+              "datetime",
+              "否",
+              "未结束为空，不得用当前时间代填"
+            ],
+            [
+              "D011",
+              "work_order",
+              "status",
+              "工单状态",
+              "enum",
+              "是",
+              "PLANNED/RELEASED/RUNNING/COMPLETED/CANCELLED"
+            ],
+            [
+              "D012",
+              "work_order",
+              "tenant_id",
+              "工厂租户",
+              "string(24)",
+              "是",
+              "所有查询与唯一约束需包含租户"
+            ],
+            [
+              "D013",
+              "finished_batch",
+              "batch_id",
+              "成品批次号",
+              "string(40)",
+              "是",
+              "工厂内唯一且永不复用"
+            ],
+            [
+              "D014",
+              "finished_batch",
+              "wo_id",
+              "所属工单",
+              "string(40)",
+              "是",
+              "引用work_order.wo_id"
+            ],
+            [
+              "D015",
+              "finished_batch",
+              "parent_batch_id",
+              "直接父批次",
+              "string(40)",
+              "否",
+              "拆分子批必填；不得自指或形成环"
+            ],
+            [
+              "D016",
+              "finished_batch",
+              "product_code",
+              "产品编码",
+              "string(32)",
+              "是",
+              "与工单一致"
+            ],
+            [
+              "D017",
+              "finished_batch",
+              "initial_qty",
+              "初始入批数量",
+              "decimal(18,3)",
+              "是",
+              "大于0；拆分子批也是入批，不代表新增产量"
+            ],
+            [
+              "D018",
+              "finished_batch",
+              "on_hand_qty",
+              "当前现场数量",
+              "decimal(18,3)",
+              "是",
+              "非负；冻结后仍保留物理现场数量"
+            ],
+            [
+              "D019",
+              "finished_batch",
+              "available_qty",
+              "可用数量",
+              "decimal(18,3)",
+              "是",
+              "0≤available_qty≤on_hand_qty；冻结时为0"
+            ],
+            [
+              "D020",
+              "finished_batch",
+              "dispatched_qty",
+              "累计发运数量",
+              "decimal(18,3)",
+              "是",
+              "成功发运减已确认实物退回；召回发起不自动减"
+            ],
+            [
+              "D021",
+              "finished_batch",
+              "split_out_qty",
+              "拆分转出数量",
+              "decimal(18,3)",
+              "是",
+              "等于所有直接拆分子边数量之和"
+            ],
+            [
+              "D022",
+              "finished_batch",
+              "scrap_qty",
+              "已批准报废数量",
+              "decimal(18,3)",
+              "是",
+              "不得凭检验不合格直接增加"
+            ],
+            [
+              "D023",
+              "finished_batch",
+              "unit",
+              "成品单位",
+              "enum",
+              "是",
+              "沿用工单单位"
+            ],
+            [
+              "D024",
+              "finished_batch",
+              "manufactured_at",
+              "生产完成时间",
+              "datetime",
+              "是",
+              "原始时间不可被子批创建覆盖"
+            ],
+            [
+              "D025",
+              "finished_batch",
+              "expiry_date",
+              "有效期日期",
+              "date",
+              "否",
+              "产品未定义保质期时为空，不擅自设定"
+            ],
+            [
+              "D026",
+              "finished_batch",
+              "status",
+              "批次状态",
+              "enum",
+              "是",
+              "IN_PROCESS/PENDING_QA/RELEASED/HOLD/SPLIT_CLOSED/SCRAPPED"
+            ],
+            [
+              "D027",
+              "finished_batch",
+              "released_by",
+              "放行人",
+              "string(24)",
+              "否",
+              "正式放行时必填，须QA_RELEASE权限"
+            ],
+            [
+              "D028",
+              "finished_batch",
+              "released_at",
+              "放行时间",
+              "datetime",
+              "否",
+              "正式放行时必填"
+            ],
+            [
+              "D029",
+              "material_lot",
+              "material_lot_id",
+              "内部来料批号",
+              "string(40)",
+              "是",
+              "工厂内唯一"
+            ],
+            [
+              "D030",
+              "material_lot",
+              "supplier_id",
+              "供应商编码",
+              "string(32)",
+              "是",
+              "引用供应商主数据"
+            ],
+            [
+              "D031",
+              "material_lot",
+              "supplier_lot_no",
+              "供应商原批号",
+              "string(64)",
+              "是",
+              "可跨到货出现；非单独唯一键"
+            ],
+            [
+              "D032",
+              "material_lot",
+              "material_code",
+              "原料编码",
+              "string(32)",
+              "是",
+              "例如AL-6061，不与成品编码混用"
+            ],
+            [
+              "D033",
+              "material_lot",
+              "received_qty",
+              "累计收货数量",
+              "decimal(18,3)",
+              "是",
+              "大于0，按原料单位"
+            ],
+            [
+              "D034",
+              "material_lot",
+              "unit",
+              "原料单位",
+              "enum",
+              "是",
+              "样例kg，库存小数保留3位"
+            ],
+            [
+              "D035",
+              "material_lot",
+              "received_at",
+              "首次收货时间",
+              "datetime",
+              "是",
+              "必须保存源事件时间"
+            ],
+            [
+              "D036",
+              "material_lot",
+              "expiry_date",
+              "原料到期日",
+              "date",
+              "否",
+              "未提供则待确认，不推导默认期限"
+            ],
+            [
+              "D037",
+              "material_lot",
+              "incoming_status",
+              "来料检验状态",
+              "enum",
+              "是",
+              "PENDING/PASS/FAIL/HOLD"
+            ],
+            [
+              "D038",
+              "material_lot",
+              "coa_no",
+              "材质证明编号",
+              "string(64)",
+              "否",
+              "无证明不能写已审核合格"
+            ],
+            [
+              "D039",
+              "material_lot",
+              "storage_zone",
+              "存储区域",
+              "string(32)",
+              "是",
+              "冻结后仍显示物理位置"
+            ],
+            [
+              "D040",
+              "consumption",
+              "consume_id",
+              "投料流水号",
+              "string(48)",
+              "是",
+              "业务幂等键，不随消息重发变化"
+            ],
+            [
+              "D041",
+              "consumption",
+              "wo_id",
+              "工单编号",
+              "string(40)",
+              "是",
+              "引用work_order.wo_id"
+            ],
+            [
+              "D042",
+              "consumption",
+              "batch_id",
+              "成品根批次",
+              "string(40)",
+              "是",
+              "引用finished_batch.batch_id；投料记根批，追溯沿拆分继承"
+            ],
+            [
+              "D043",
+              "consumption",
+              "material_lot_id",
+              "来料批号",
+              "string(40)",
+              "是",
+              "引用material_lot.material_lot_id"
+            ],
+            [
+              "D044",
+              "consumption",
+              "consumed_qty",
+              "消耗量",
+              "decimal(18,3)",
+              "是",
+              "大于0，退料另建反向事件不可覆盖原值"
+            ],
+            [
+              "D045",
+              "consumption",
+              "unit",
+              "消耗单位",
+              "enum",
+              "是",
+              "必须与来料计量单位一致"
+            ],
+            [
+              "D046",
+              "consumption",
+              "issued_at",
+              "实际投料时间",
+              "datetime",
+              "是",
+              "保留设备原始采集时间"
+            ],
+            [
+              "D047",
+              "consumption",
+              "station_id",
+              "投料工位",
+              "string(32)",
+              "是",
+              "存在且属于工单生产线"
+            ],
+            [
+              "D048",
+              "consumption",
+              "scan_operator",
+              "扫码操作人",
+              "string(24)",
+              "是",
+              "在岗账号；禁止多人共用账号"
+            ],
+            [
+              "D049",
+              "process_run",
+              "run_id",
+              "工序执行号",
+              "string(48)",
+              "是",
+              "执行唯一；返工创建新号"
+            ],
+            [
+              "D050",
+              "process_run",
+              "batch_id",
+              "加工批次",
+              "string(40)",
+              "是",
+              "引用finished_batch.batch_id"
+            ],
+            [
+              "D051",
+              "process_run",
+              "station_id",
+              "工位",
+              "string(32)",
+              "是",
+              "关联配方工序"
+            ],
+            [
+              "D052",
+              "process_run",
+              "equipment_id",
+              "设备编号",
+              "string(32)",
+              "是",
+              "采集时设备须有效"
+            ],
+            [
+              "D053",
+              "process_run",
+              "operator_id",
+              "操作员",
+              "string(24)",
+              "是",
+              "须有该工位操作权限"
+            ],
+            [
+              "D054",
+              "process_run",
+              "start_at",
+              "工序开始",
+              "datetime",
+              "是",
+              "不得晚于end_at"
+            ],
+            [
+              "D055",
+              "process_run",
+              "end_at",
+              "工序结束",
+              "datetime",
+              "否",
+              "未完成时为空"
+            ],
+            [
+              "D056",
+              "process_run",
+              "temperature_c",
+              "保温温度",
+              "decimal(6,2)",
+              "热处理必填",
+              "QC-MTR-V3范围[175,185]℃"
+            ],
+            [
+              "D057",
+              "process_run",
+              "hold_seconds",
+              "保温秒数",
+              "int",
+              "热处理必填",
+              "大于等于7200；0不是未采集"
+            ],
+            [
+              "D058",
+              "process_run",
+              "torque_nm",
+              "扭矩",
+              "decimal(7,3)",
+              "装配必填",
+              "QC-MTR-V3范围[23,27]N·m"
+            ],
+            [
+              "D059",
+              "process_run",
+              "recipe_version",
+              "执行配方版本",
+              "string(24)",
+              "是",
+              "须等于工单冻结版本或已批准返工版本"
+            ],
+            [
+              "D060",
+              "inspection",
+              "inspection_id",
+              "检验单号",
+              "string(48)",
+              "是",
+              "全厂唯一"
+            ],
+            [
+              "D061",
+              "inspection",
+              "batch_id",
+              "被检批次",
+              "string(40)",
+              "是",
+              "引用finished_batch.batch_id"
+            ],
+            [
+              "D062",
+              "inspection",
+              "inspection_type",
+              "检验类型",
+              "enum",
+              "是",
+              "INCOMING/OUTGOING/RETAIN/RETEST"
+            ],
+            [
+              "D063",
+              "inspection",
+              "plan_version",
+              "抽样方案版本",
+              "string(32)",
+              "是",
+              "投检时冻结QC-MTR-V3等版本"
+            ],
+            [
+              "D064",
+              "inspection",
+              "sample_size",
+              "样本数",
+              "int",
+              "是",
+              "1～批次数；须符合所选规则"
+            ],
+            [
+              "D065",
+              "inspection",
+              "defect_count",
+              "不合格样本数",
+              "int",
+              "是",
+              "0≤defect_count≤sample_size，不是缺陷总点数"
+            ],
+            [
+              "D066",
+              "inspection",
+              "defect_code",
+              "主要缺陷码",
+              "enum",
+              "有不合格时必填",
+              "CRACK/DIMENSION/TORQUE/APPEARANCE/OTHER"
+            ],
+            [
+              "D067",
+              "inspection",
+              "result",
+              "检验结果",
+              "enum",
+              "是",
+              "PASS/FAIL/INCOMPLETE；不等同批次正式放行"
+            ],
+            [
+              "D068",
+              "inspection",
+              "measured_at",
+              "测量完成时间",
+              "datetime",
+              "是",
+              "设备或人工原始时间"
+            ],
+            [
+              "D069",
+              "inspection",
+              "inspector_id",
+              "检验员",
+              "string(24)",
+              "是",
+              "与复核员不得同人"
+            ],
+            [
+              "D070",
+              "inspection",
+              "reviewer_id",
+              "复核员",
+              "string(24)",
+              "审核时必填",
+              "具有QA_REVIEW权限"
+            ],
+            [
+              "D071",
+              "inspection",
+              "review_status",
+              "审核状态",
+              "enum",
+              "是",
+              "DRAFT/SUBMITTED/APPROVED/REJECTED"
+            ],
+            [
+              "D072",
+              "inspection",
+              "retest_of",
+              "原检验单号",
+              "string(48)",
+              "复检必填",
+              "引用inspection.inspection_id，不能覆盖原检验"
+            ],
+            [
+              "D073",
+              "shipment",
+              "shipment_id",
+              "发运单号",
+              "string(48)",
+              "是",
+              "业务唯一"
+            ],
+            [
+              "D074",
+              "shipment",
+              "batch_id",
+              "发运批次",
+              "string(40)",
+              "是",
+              "必须是可发运叶批，引用finished_batch.batch_id"
+            ],
+            [
+              "D075",
+              "shipment",
+              "customer_id",
+              "客户编码",
+              "string(32)",
+              "是",
+              "引用客户主数据"
+            ],
+            [
+              "D076",
+              "shipment",
+              "customer_site",
+              "收货工厂",
+              "string(64)",
+              "是",
+              "召回范围要定位实际地点"
+            ],
+            [
+              "D077",
+              "shipment",
+              "qty",
+              "发运数量",
+              "decimal(18,3)",
+              "是",
+              "大于0，不超过事务内可用量"
+            ],
+            [
+              "D078",
+              "shipment",
+              "unit",
+              "发运单位",
+              "enum",
+              "是",
+              "同成品批次单位"
+            ],
+            [
+              "D079",
+              "shipment",
+              "ship_at",
+              "实际发运时间",
+              "datetime",
+              "是",
+              "保留原始时间"
+            ],
+            [
+              "D080",
+              "shipment",
+              "logistic_no",
+              "运单号",
+              "string(64)",
+              "否",
+              "未提供只记缺失，不造承运商"
+            ],
+            [
+              "D081",
+              "shipment",
+              "order_no",
+              "客户订单号",
+              "string(64)",
+              "是",
+              "同一订单可多次发运"
+            ],
+            [
+              "D082",
+              "shipment",
+              "status",
+              "发运状态",
+              "enum",
+              "是",
+              "CREATED/SHIPPED/DELIVERED/RETURNED/CANCELLED"
+            ],
+            [
+              "D083",
+              "shipment",
+              "proof_ref",
+              "签收凭证路径",
+              "string(256)",
+              "否",
+              "必须权限控制，不直接暴露存储URL"
+            ],
+            [
+              "D084",
+              "hold_record",
+              "hold_id",
+              "冻结单号",
+              "string(48)",
+              "是",
+              "冻结单唯一"
+            ],
+            [
+              "D085",
+              "hold_record",
+              "batch_id",
+              "冻结叶批次",
+              "string(40)",
+              "是",
+              "实际冻结在叶批生效，父批保留来源关联"
+            ],
+            [
+              "D086",
+              "hold_record",
+              "hold_source",
+              "冻结来源",
+              "enum",
+              "是",
+              "INSPECTION/CUSTOMER_COMPLAINT/MATERIAL_ALERT/MANUAL"
+            ],
+            [
+              "D087",
+              "hold_record",
+              "reason",
+              "冻结原因",
+              "string(500)",
+              "是",
+              "不能只填其他"
+            ],
+            [
+              "D088",
+              "hold_record",
+              "scope_qty",
+              "冻结现场数量",
+              "decimal(18,3)",
+              "是",
+              "不含已发运召回数量"
+            ],
+            [
+              "D089",
+              "hold_record",
+              "status",
+              "冻结状态",
+              "enum",
+              "是",
+              "ACTIVE/RELEASED/CONSUMED_BY_SCRAP"
+            ],
+            [
+              "D090",
+              "hold_record",
+              "created_at",
+              "冻结时间",
+              "datetime",
+              "是",
+              "与批次冻结事务一致"
+            ],
+            [
+              "D091",
+              "hold_record",
+              "released_at",
+              "解冻时间",
+              "datetime",
+              "解冻时必填",
+              "不得早于创建"
+            ],
+            [
+              "D092",
+              "hold_record",
+              "released_by",
+              "解冻人",
+              "string(24)",
+              "解冻时必填",
+              "须QA_RELEASE且不是原检验员"
+            ],
+            [
+              "D093",
+              "split_relation",
+              "split_id",
+              "拆分事件号",
+              "string(48)",
+              "是",
+              "相同ID重复不得创建第二批"
+            ],
+            [
+              "D094",
+              "split_relation",
+              "parent_batch_id",
+              "父批次",
+              "string(40)",
+              "是",
+              "引用finished_batch.batch_id"
+            ],
+            [
+              "D095",
+              "split_relation",
+              "child_batch_id",
+              "子批次",
+              "string(40)",
+              "是",
+              "唯一直接父；禁止环"
+            ],
+            [
+              "D096",
+              "split_relation",
+              "qty",
+              "转移数量",
+              "decimal(18,3)",
+              "是",
+              "大于0，同次拆分数量总和不超过父可拆数量"
+            ],
+            [
+              "D097",
+              "split_relation",
+              "unit",
+              "转移单位",
+              "enum",
+              "是",
+              "父子单位一致"
+            ],
+            [
+              "D098",
+              "split_relation",
+              "split_at",
+              "拆分时间",
+              "datetime",
+              "是",
+              "父减少、子增加、关系写入同一事务"
+            ]
+          ]
+        },
+        {
+          "name": "工单",
+          "headers": [
+            "wo_id",
+            "product_code",
+            "recipe_version",
+            "plan_qty",
+            "unit",
+            "line_id",
+            "planned_start",
+            "planned_end",
+            "actual_start",
+            "actual_end",
+            "status",
+            "tenant_id"
+          ],
+          "rows": [
+            [
+              "WO-0618-A",
+              "MTR-08",
+              "R-MTR08-3",
+              1000,
+              "件",
+              "LINE-A",
+              "2026-06-18T08:00:00+08:00",
+              "2026-06-18T20:00:00+08:00",
+              "2026-06-18T08:00:00+08:00",
+              "2026-06-18T19:00:00+08:00",
+              "COMPLETED",
+              "CZ01"
+            ],
+            [
+              "WO-0619-B",
+              "MTR-12",
+              "R-MTR12-3",
+              500,
+              "件",
+              "LINE-B",
+              "2026-06-19T08:00:00+08:00",
+              "2026-06-19T20:00:00+08:00",
+              "2026-06-19T08:00:00+08:00",
+              "2026-06-19T18:00:00+08:00",
+              "COMPLETED",
+              "CZ01"
+            ]
+          ]
+        },
+        {
+          "name": "成品批次",
+          "headers": [
+            "batch_id",
+            "wo_id",
+            "parent_batch_id",
+            "product_code",
+            "initial_qty",
+            "on_hand_qty",
+            "available_qty",
+            "dispatched_qty",
+            "split_out_qty",
+            "scrap_qty",
+            "unit",
+            "manufactured_at",
+            "expiry_date",
+            "status",
+            "released_by",
+            "released_at"
+          ],
+          "rows": [
+            [
+              "FG-A-0618-01",
+              "WO-0618-A",
+              "",
+              "MTR-08",
+              600,
+              0,
+              0,
+              0,
+              600,
+              0,
+              "件",
+              "2026-06-18T18:00:00+08:00",
+              "",
+              "SPLIT_CLOSED",
+              "QA-02",
+              "2026-06-19T09:30:00+08:00"
+            ],
+            [
+              "FG-A-0618-01A",
+              "WO-0618-A",
+              "FG-A-0618-01",
+              "MTR-08",
+              400,
+              100,
+              0,
+              300,
+              0,
+              0,
+              "件",
+              "2026-06-18T18:00:00+08:00",
+              "",
+              "HOLD",
+              "QA-02",
+              "2026-06-19T09:30:00+08:00"
+            ],
+            [
+              "FG-A-0618-01B",
+              "WO-0618-A",
+              "FG-A-0618-01",
+              "MTR-08",
+              200,
+              50,
+              0,
+              150,
+              0,
+              0,
+              "件",
+              "2026-06-18T18:00:00+08:00",
+              "",
+              "HOLD",
+              "QA-02",
+              "2026-06-19T09:30:00+08:00"
+            ],
+            [
+              "FG-A-0618-02",
+              "WO-0618-A",
+              "",
+              "MTR-08",
+              400,
+              200,
+              0,
+              200,
+              0,
+              0,
+              "件",
+              "2026-06-18T19:00:00+08:00",
+              "",
+              "HOLD",
+              "QA-02",
+              "2026-06-19T10:00:00+08:00"
+            ],
+            [
+              "FG-B-0619-01",
+              "WO-0619-B",
+              "",
+              "MTR-12",
+              500,
+              400,
+              400,
+              100,
+              0,
+              0,
+              "件",
+              "2026-06-19T18:00:00+08:00",
+              "",
+              "RELEASED",
+              "QA-03",
+              "2026-06-20T09:00:00+08:00"
+            ]
+          ]
+        },
+        {
+          "name": "来料批次",
+          "headers": [
+            "material_lot_id",
+            "supplier_id",
+            "supplier_lot_no",
+            "material_code",
+            "received_qty",
+            "unit",
+            "received_at",
+            "expiry_date",
+            "incoming_status",
+            "coa_no",
+            "storage_zone"
+          ],
+          "rows": [
+            [
+              "RM-AL-240601",
+              "SUP-AL01",
+              "SUP-A-0601",
+              "AL-6061",
+              500,
+              "kg",
+              "2026-06-01T10:00:00+08:00",
+              "",
+              "PASS",
+              "COA-A-0601",
+              "Z-A01"
+            ],
+            [
+              "RM-AL-240602",
+              "SUP-AL01",
+              "SUP-A-0602",
+              "AL-6061",
+              800,
+              "kg",
+              "2026-06-02T10:00:00+08:00",
+              "",
+              "PASS",
+              "COA-A-0602",
+              "Z-A02"
+            ],
+            [
+              "RM-BOLT-240610",
+              "SUP-FT02",
+              "SUP-F-0610",
+              "BOLT-M8",
+              5000,
+              "件",
+              "2026-06-10T14:00:00+08:00",
+              "",
+              "PASS",
+              "COA-F-0610",
+              "Z-B01"
+            ]
+          ]
+        },
+        {
+          "name": "投料关系",
+          "headers": [
+            "consume_id",
+            "wo_id",
+            "batch_id",
+            "material_lot_id",
+            "consumed_qty",
+            "unit",
+            "issued_at",
+            "station_id",
+            "scan_operator"
+          ],
+          "rows": [
+            [
+              "CS-001",
+              "WO-0618-A",
+              "FG-A-0618-01",
+              "RM-AL-240601",
+              120,
+              "kg",
+              "2026-06-18T08:05:00+08:00",
+              "ST-CUT01",
+              "OP-01"
+            ],
+            [
+              "CS-002",
+              "WO-0618-A",
+              "FG-A-0618-02",
+              "RM-AL-240601",
+              80,
+              "kg",
+              "2026-06-18T08:30:00+08:00",
+              "ST-CUT01",
+              "OP-01"
+            ],
+            [
+              "CS-003",
+              "WO-0619-B",
+              "FG-B-0619-01",
+              "RM-AL-240602",
+              100,
+              "kg",
+              "2026-06-19T08:05:00+08:00",
+              "ST-CUT02",
+              "OP-02"
+            ],
+            [
+              "CS-004",
+              "WO-0618-A",
+              "FG-A-0618-01",
+              "RM-BOLT-240610",
+              1200,
+              "件",
+              "2026-06-18T15:00:00+08:00",
+              "ST-ASM01",
+              "OP-03"
+            ],
+            [
+              "CS-005",
+              "WO-0618-A",
+              "FG-A-0618-02",
+              "RM-BOLT-240610",
+              800,
+              "件",
+              "2026-06-18T16:00:00+08:00",
+              "ST-ASM01",
+              "OP-03"
+            ]
+          ]
+        },
+        {
+          "name": "拆分关系",
+          "headers": [
+            "split_id",
+            "parent_batch_id",
+            "child_batch_id",
+            "qty",
+            "unit",
+            "split_at"
+          ],
+          "rows": [
+            [
+              "SPLIT-001",
+              "FG-A-0618-01",
+              "FG-A-0618-01A",
+              400,
+              "件",
+              "2026-06-19T10:30:00+08:00"
+            ],
+            [
+              "SPLIT-002",
+              "FG-A-0618-01",
+              "FG-A-0618-01B",
+              200,
+              "件",
+              "2026-06-19T10:30:00+08:00"
+            ]
+          ]
+        },
+        {
+          "name": "工序记录",
+          "headers": [
+            "run_id",
+            "batch_id",
+            "station_id",
+            "equipment_id",
+            "operator_id",
+            "start_at",
+            "end_at",
+            "temperature_c",
+            "hold_seconds",
+            "torque_nm",
+            "recipe_version"
+          ],
+          "rows": [
+            [
+              "RUN-001",
+              "FG-A-0618-01",
+              "ST-HT01",
+              "EQ-HT01",
+              "OP-04",
+              "2026-06-18T09:00:00+08:00",
+              "2026-06-18T11:00:00+08:00",
+              180,
+              7200,
+              "",
+              "R-MTR08-3"
+            ],
+            [
+              "RUN-002",
+              "FG-A-0618-02",
+              "ST-HT01",
+              "EQ-HT01",
+              "OP-04",
+              "2026-06-18T11:30:00+08:00",
+              "2026-06-18T13:30:00+08:00",
+              185,
+              7200,
+              "",
+              "R-MTR08-3"
+            ],
+            [
+              "RUN-003",
+              "FG-A-0618-01",
+              "ST-ASM01",
+              "EQ-TQ01",
+              "OP-03",
+              "2026-06-18T15:00:00+08:00",
+              "2026-06-18T16:30:00+08:00",
+              "",
+              "",
+              25,
+              "R-MTR08-3"
+            ],
+            [
+              "RUN-004",
+              "FG-A-0618-02",
+              "ST-ASM01",
+              "EQ-TQ01",
+              "OP-03",
+              "2026-06-18T16:30:00+08:00",
+              "2026-06-18T17:30:00+08:00",
+              "",
+              "",
+              27,
+              "R-MTR08-3"
+            ],
+            [
+              "RUN-005",
+              "FG-B-0619-01",
+              "ST-HT02",
+              "EQ-HT02",
+              "OP-05",
+              "2026-06-19T09:00:00+08:00",
+              "2026-06-19T11:00:00+08:00",
+              175,
+              7200,
+              "",
+              "R-MTR12-3"
+            ],
+            [
+              "RUN-006",
+              "FG-B-0619-01",
+              "ST-ASM02",
+              "EQ-TQ02",
+              "OP-06",
+              "2026-06-19T15:00:00+08:00",
+              "2026-06-19T16:30:00+08:00",
+              "",
+              "",
+              23,
+              "R-MTR12-3"
+            ]
+          ]
+        },
+        {
+          "name": "检验记录",
+          "headers": [
+            "inspection_id",
+            "batch_id",
+            "inspection_type",
+            "plan_version",
+            "sample_size",
+            "defect_count",
+            "defect_code",
+            "result",
+            "measured_at",
+            "inspector_id",
+            "reviewer_id",
+            "review_status",
+            "retest_of"
+          ],
+          "rows": [
+            [
+              "INSP-001",
+              "FG-A-0618-01",
+              "OUTGOING",
+              "QC-MTR-V3",
+              50,
+              1,
+              "APPEARANCE",
+              "PASS",
+              "2026-06-19T09:00:00+08:00",
+              "QI-01",
+              "QA-02",
+              "APPROVED",
+              ""
+            ],
+            [
+              "INSP-002",
+              "FG-A-0618-02",
+              "OUTGOING",
+              "QC-MTR-V3",
+              32,
+              0,
+              "",
+              "PASS",
+              "2026-06-19T09:30:00+08:00",
+              "QI-01",
+              "QA-02",
+              "APPROVED",
+              ""
+            ],
+            [
+              "INSP-003",
+              "FG-B-0619-01",
+              "OUTGOING",
+              "QC-MTR-V3",
+              32,
+              0,
+              "",
+              "PASS",
+              "2026-06-20T08:30:00+08:00",
+              "QI-02",
+              "QA-03",
+              "APPROVED",
+              ""
+            ],
+            [
+              "INSP-004",
+              "FG-A-0618-01",
+              "RETAIN",
+              "QC-MTR-V3",
+              50,
+              2,
+              "CRACK",
+              "FAIL",
+              "2026-06-22T12:00:00+08:00",
+              "QI-03",
+              "QA-02",
+              "APPROVED",
+              ""
+            ],
+            [
+              "INSP-005",
+              "FG-A-0618-01",
+              "RETEST",
+              "QC-MTR-V3",
+              50,
+              0,
+              "",
+              "PASS",
+              "2026-06-22T16:00:00+08:00",
+              "QI-03",
+              "",
+              "SUBMITTED",
+              "INSP-004"
+            ]
+          ]
+        },
+        {
+          "name": "发货明细",
+          "headers": [
+            "shipment_id",
+            "batch_id",
+            "customer_id",
+            "customer_site",
+            "qty",
+            "unit",
+            "ship_at",
+            "logistic_no",
+            "order_no",
+            "status",
+            "proof_ref"
+          ],
+          "rows": [
+            [
+              "SH-001",
+              "FG-A-0618-01A",
+              "CUS-01",
+              "客户甲苏州工厂",
+              300,
+              "件",
+              "2026-06-20T10:00:00+08:00",
+              "LOG-7001",
+              "SO-001",
+              "DELIVERED",
+              "proof/SH-001.pdf"
+            ],
+            [
+              "SH-002",
+              "FG-A-0618-01B",
+              "CUS-02",
+              "客户乙常州工厂",
+              150,
+              "件",
+              "2026-06-20T11:00:00+08:00",
+              "LOG-7002",
+              "SO-002",
+              "DELIVERED",
+              "proof/SH-002.pdf"
+            ],
+            [
+              "SH-003",
+              "FG-A-0618-02",
+              "CUS-01",
+              "客户甲苏州工厂",
+              200,
+              "件",
+              "2026-06-21T09:00:00+08:00",
+              "LOG-7003",
+              "SO-003",
+              "SHIPPED",
+              ""
+            ],
+            [
+              "SH-004",
+              "FG-B-0619-01",
+              "CUS-03",
+              "客户丙无锡工厂",
+              100,
+              "件",
+              "2026-06-21T10:00:00+08:00",
+              "LOG-7004",
+              "SO-004",
+              "DELIVERED",
+              "proof/SH-004.pdf"
+            ]
+          ]
+        },
+        {
+          "name": "冻结记录",
+          "headers": [
+            "hold_id",
+            "batch_id",
+            "hold_source",
+            "reason",
+            "scope_qty",
+            "status",
+            "created_at",
+            "released_at",
+            "released_by"
+          ],
+          "rows": [
+            [
+              "HOLD-001",
+              "FG-A-0618-01A",
+              "MATERIAL_ALERT",
+              "关联RM-AL-240601质量预警，保留现场物料",
+              100,
+              "ACTIVE",
+              "2026-06-22T14:00:00+08:00",
+              "",
+              ""
+            ],
+            [
+              "HOLD-002",
+              "FG-A-0618-01B",
+              "MATERIAL_ALERT",
+              "关联RM-AL-240601质量预警，保留现场物料",
+              50,
+              "ACTIVE",
+              "2026-06-22T14:00:00+08:00",
+              "",
+              ""
+            ],
+            [
+              "HOLD-003",
+              "FG-A-0618-02",
+              "MATERIAL_ALERT",
+              "关联RM-AL-240601质量预警，保留现场物料",
+              200,
+              "ACTIVE",
+              "2026-06-22T14:00:00+08:00",
+              "",
+              ""
+            ]
+          ]
+        },
+        {
+          "name": "产量核对",
+          "headers": [
+            "batch_id",
+            "initial_qty",
+            "parent_batch_id",
+            "on_hand_qty",
+            "dispatched_qty",
+            "split_out_qty",
+            "scrap_qty",
+            "accounted_qty",
+            "delta_qty",
+            "is_leaf",
+            "related_to_RM_240601"
+          ],
+          "rows": [
+            [
+              "FG-A-0618-01",
+              600,
+              "",
+              0,
+              0,
+              600,
+              0,
+              "=SUM(D2:G2)",
+              "=B2-H2",
+              false,
+              true
+            ],
+            [
+              "FG-A-0618-01A",
+              400,
+              "FG-A-0618-01",
+              100,
+              300,
+              0,
+              0,
+              "=SUM(D3:G3)",
+              "=B3-H3",
+              true,
+              true
+            ],
+            [
+              "FG-A-0618-01B",
+              200,
+              "FG-A-0618-01",
+              50,
+              150,
+              0,
+              0,
+              "=SUM(D4:G4)",
+              "=B4-H4",
+              true,
+              true
+            ],
+            [
+              "FG-A-0618-02",
+              400,
+              "",
+              200,
+              200,
+              0,
+              0,
+              "=SUM(D5:G5)",
+              "=B5-H5",
+              true,
+              true
+            ],
+            [
+              "FG-B-0619-01",
+              500,
+              "",
+              400,
+              100,
+              0,
+              0,
+              "=SUM(D6:G6)",
+              "=B6-H6",
+              true,
+              false
+            ]
+          ]
+        },
+        {
+          "name": "状态字典",
+          "headers": [
+            "领域",
+            "值",
+            "含义",
+            "关键约束"
+          ],
+          "rows": [
+            [
+              "batch",
+              "IN_PROCESS",
+              "生产中",
+              "不可发运"
+            ],
+            [
+              "batch",
+              "PENDING_QA",
+              "待质量判定",
+              "不可发运"
+            ],
+            [
+              "batch",
+              "RELEASED",
+              "已正式放行",
+              "发运还需可用量及无冻结"
+            ],
+            [
+              "batch",
+              "HOLD",
+              "质量冻结",
+              "可用量0但现场量保留"
+            ],
+            [
+              "batch",
+              "SPLIT_CLOSED",
+              "父批已全部转出",
+              "不再直接发运；仍可查历史检验"
+            ],
+            [
+              "batch",
+              "SCRAPPED",
+              "已批准报废",
+              "不能通过复检恢复"
+            ],
+            [
+              "inspection",
+              "PASS",
+              "本次检验合格",
+              "不等同正式批次放行"
+            ],
+            [
+              "inspection",
+              "FAIL",
+              "本次检验不合格",
+              "需处置，原记录永久保留"
+            ],
+            [
+              "inspection",
+              "INCOMPLETE",
+              "缺失必须数据",
+              "不可按0或合格处理"
+            ],
+            [
+              "permission",
+              "QA_REVIEW",
+              "检验复核",
+              "不可复核本人检验"
+            ],
+            [
+              "permission",
+              "QA_RELEASE",
+              "正式放行与解冻",
+              "原检验员不可解冻本异常"
+            ],
+            [
+              "disposition",
+              "CONCESSION",
+              "让步接收",
+              "必须有客户书面同意编号"
+            ],
+            [
+              "recall",
+              "OPEN",
+              "已发起召回",
+              "不改变库存"
+            ],
+            [
+              "recall",
+              "IN_PROGRESS",
+              "客户响应与退回处理中",
+              "只按确认退回事件入库"
+            ],
+            [
+              "recall",
+              "CLOSED",
+              "已完成处置",
+              "需所有目标发运均有最终处置"
+            ]
+          ],
+          "hidden": true
+        }
+      ]
+    },
+    {
+      "path": "03_质量规则V3.docx",
+      "kind": "docx",
+      "title": "质量规则 QC-MTR-V3（2026-06-01 生效）",
+      "sections": [
+        {
+          "heading": "1 规则生效与适用",
+          "text": [
+            "本规则用于2026-06-01及以后投产的MTR-08/MTR-12工单，按actual_start冻结版本；旧工单继续使用其原冻结版本。抽样方案的plan_version也要保存，历史检验不得随规则发布重新计算。若投产时间缺失不能猜版本，应阻止正常开工并列异常。"
+          ]
+        },
+        {
+          "heading": "2 工序阈值与缺测",
+          "text": [
+            "热处理保温温度175.00～185.00℃，两端包含；有效保温时长≥7200秒。装配扭矩23.000～27.000N·m，两端包含。测量超限触发异常及冻结申请，不允许通过四舍五入把174.999或27.001改成合格。展示精度与判定原始精度分离。",
+            "必采工序字段未采集时结果INCOMPLETE，不能把空值当0，更不能把缺少异常记录理解为PASS。设备上报校准有效性标记，过期校准所采数值仍保留，但需质量确认有效性后才能用于放行。"
+          ]
+        },
+        {
+          "heading": "3 抽样判定",
+          "text": [
+            "批次初始数量≤500件时抽样32件，Ac=0、Re=1；批次初始数量501～1200件时抽样50件，Ac=1、Re=2。超过1200件的抽样规则未批准，不能套用50件规则。抽样数量不足32或50时标记INCOMPLETE，不能按当前样本比例推定合格。",
+            "不合格样本数是发生至少一个不合格的样品个数，不是同一样品的缺陷点数。缺陷率=不合格样本数/样本数；即使缺陷率看似低，只要达到Re仍为不合格。检验结果PASS只表示该次检查通过，还必须完成审核与正式放行。"
+          ]
+        },
+        {
+          "heading": "4 冻结、复检与放行",
+          "text": [
+            "不合格检验提交后阻止新增发运，质量审核确认后建立正式冻结及处置。遇来料质量预警，质量负责人可以按来料追溯范围冻结所有受影响现场叶批；已发运数量进入召回跟踪。冻结与可用量更新在同一事务提交，发运时再次检查版本和冻结，防止页面旧状态绕过。",
+            "复检必须新建检验单并以retest_of引用原单；复检合格不抹掉初检失败、不自动解冻，也不自动撤回已发召回通知。正式解冻需质量负责人处置结论、复核和QA_RELEASE权限，且不能由原检验员执行。部分数量解冻需先按批准数量拆分子批，保留旧冻结关系。"
+          ]
+        },
+        {
+          "heading": "5 处置决策",
+          "text": [
+            "处置类型包括返工、报废、让步接收、维持冻结和解冻。报废需批准并生成独立数量事件，不能直接删批；返工创建新的工序执行记录和检验记录，保留原工艺与原不合格。让步接收需客户书面同意编号，适用客户和数量范围明确，不得泛化为所有客户均同意。"
+          ]
+        },
+        {
+          "heading": "6 批次拆分与守恒",
+          "text": [
+            "子批继承产品、原始生产时间、原工单及完整上游谱系；父批冻结时子批也必须继承冻结约束，不能用拆分洗掉冻结。拆分父减、子增、关系写入与审计必须原子提交。禁止父子自环、祖先反向引用、转移数量为0和超过父当前可拆数量。",
+            "单个批次数量守恒：initial_qty=on_hand_qty+dispatched_qty+split_out_qty+scrap_qty。召回尚未实物退回时dispatched_qty不减。全谱系聚合只对末端叶批求现场和发运，原始生产量只对根批求initial_qty，不能把父600和子400+200重复算1200。"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "04_事件与接口契约.md",
+      "kind": "md",
+      "title": "采集、追溯与质量事件接口契约 V1.4",
+      "sections": [
+        {
+          "heading": "1 事件信封与幂等",
+          "text": [
+            "所有事件包含tenant_id、event_id、event_type、entity_id、entity_version、occurred_at、received_at、device_id、operator_id、payload_hash。event_id由设备持久生成；离线重传不得重新生成。相同event_id相同payload_hash返回原处理结果；相同event_id不同内容返回409 EVENT_PAYLOAD_CONFLICT并保留冲突，不覆盖原始事件。",
+            "设备时间与服务器接收时间都保存，迟到事件按业务版本和实际工序判断，不能简单按received_at覆盖更新。设备时间偏差超过5分钟标记TIME_SKEW并要求人工确认，不能偷偷修成服务器时间。"
+          ]
+        },
+        {
+          "heading": "2 投料与拆分接口",
+          "text": [
+            "POST /v1.4/consumptions校验工单、来料、成品根批、单位和权限。来料状态HOLD/FAIL时拒绝新增投料，关联缺失返回422 REFERENCE_NOT_FOUND。所有数量使用十进制定点数，kg三位小数，件对于本期产品必须整数。",
+            "POST /v1.4/batches/{id}/split携带expected_version、split_id和children[{child_batch_id,qty}]。版本冲突返回409 VERSION_CONFLICT；成功一次性提交父子数量和边。拆分失败不得残留已创建子批或孤立边，重试沿用split_id。"
+          ]
+        },
+        {
+          "heading": "3 检验与处置接口",
+          "text": [
+            "POST /v1.4/inspections保存原测量值、样本数、defect_count、plan_version及原文件指纹，复检必须提供retest_of。审批接口记录reviewer_id与意见；放行接口另检查QA_RELEASE、冻结与上游完整性，不接受仅凭result=PASS直接放行。",
+            "POST /v1.4/holds创建冻结；POST /v1.4/dispositions记录处置及证据引用。状态修改用expected_version，写入前再次检查权限；任何变更都记录前后值、原始操作者、审批人和原因。"
+          ]
+        },
+        {
+          "heading": "4 追溯查询与导出",
+          "text": [
+            "GET /v1.4/trace?direction=forward|backward&start_type=material_lot|batch|shipment&start_id=...&as_of=... 返回nodes、edges、quantity_summary、missing_links、as_of、snapshot_id。默认以查询时快照查询；翻页或导出必须沿用snapshot_id，避免用户在变化中混合两个时点的数量。",
+            "节点含type、id、unit、status，边含relation、source_id、target_id、qty、unit和source_event_id。按真实关系展示CONSUMED_IN、SPLIT_TO、SHIPPED_AS；不能用相同产品编码替代批次关系。禁止把kg消耗边与件发运边加成一个总数量。"
+          ]
+        },
+        {
+          "heading": "5 安全与异常",
+          "text": [
+            "跨租户ID必须返回不可见结果而非泄漏客户名；凭证下载复查与对象对应权限。导出加入租户、操作者、截至时间和水印标记。日志不得包含完整客户联系方式或访问令牌。审批和追溯核心事件必须可审计，保存年限尚未批准。",
+            "接口幂等和消息至少一次投递配套，不能宣称设备与服务器“绝对恰好一次”。事件处理失败进入可重试队列，业务校验失败进入隔离清单供人工修正来源再重新提交，原错误不得被删除。"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "05_车间异常纪要.txt",
+      "kind": "txt",
+      "title": "车间异常与召回演练纪要 2026-06-22",
+      "sections": [
+        {
+          "heading": "1 召回演练确定情景",
+          "text": [
+            "截至2026-06-22 17:00，供应商材料预警指向内部来料RM-AL-240601。系统应展开投料到FG-A-0618-01和FG-A-0618-02；前者已全部拆为FG-A-0618-01A及FG-A-0618-01B。现场冻结分别100、50、200件；发运SH-001为300件到客户甲苏州工厂，SH-002为150件到客户乙常州工厂，SH-003为200件到客户甲苏州工厂。",
+            "FG-B-0619-01来自RM-AL-240602，不在本次预警范围，即使供应商相同也不可自动纳入。是否扩展到同供应商其他批须质量负责人另行决策并记录依据。现场已冻结物料不等于已报废，召回尚未收到实物。"
+          ]
+        },
+        {
+          "heading": "2 留样与复检情景",
+          "text": [
+            "INSP-004为根批FG-A-0618-01留样检查，50件中2件裂纹，不合格；INSP-005复检50件无不合格，但截至数据快照仍为SUBMITTED，尚未完成复核和处置。不得在报告中把三个HOLD叶批写成已解冻。",
+            "根批可在SPLIT_CLOSED后保留留样检验；这是质量追溯证据，不是允许再对父批发运。调查记录没有结论证明裂纹一定由供应商造成，预警关联仅用于控制范围，不得写成确定根因。"
+          ]
+        },
+        {
+          "heading": "3 有条件性能目标",
+          "text": [
+            "在一年500万采集事件、20万批次、单次最多展开10000节点和20000边条件下，交互追溯查询P95≤3秒，超过范围转异步导出并明确提示截断/分页；不能静默只展示前10000个节点后宣称完整。",
+            "网关离线24小时、每分钟1000事件的积压目标在网络恢复后30分钟内回放完成；该目标需按端到端服务吞吐验证，并优先保留原事件顺序及业务依赖，不能为了速度丢弃重复以外的数据。该演练包含单个网关，不声称全厂同时离线都已验证。"
+          ]
+        },
+        {
+          "heading": "4 需要专项验收的异常",
+          "text": [
+            "父批冻结与仓库发运并发；拆分写父成功但写子失败；离线重复event_id相同/不同内容；先到达子批检验后到达拆分事件；缺少设备必采字段；设备时间快7分钟；来料单位kg误报成件；引用不存在batch_id；缺失ERP工单；凭证权限越界。每项应描述可见错误、持久化状态、人工修复和再处理。"
+          ]
+        },
+        {
+          "heading": "5 未决事项",
+          "text": [
+            "尚未确定产品保质期、原料到期日缺失时的补录政策、跨工厂身份联邦、ERP真实端点及认证方式、历史证据保存年限、灾备恢复目标和大于1200件批次抽样方案。可以列出建议选项，但不得绑定真实外部法规或当作已批准要求。"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "06_历史规则V2归档.md",
+      "kind": "md",
+      "title": "归档质量规则 QC-MTR-V2",
+      "sections": [
+        {
+          "heading": "历史适用范围",
+          "text": [
+            "V2仅适用于2026-06-01以前已经投产并冻结旧配方的工单。旧温度允许170～190℃，旧扭矩允许22～28N·m。V3新工单不得采用这些较宽阈值。"
+          ]
+        },
+        {
+          "heading": "需要保留的历史语义",
+          "text": [
+            "V2曾允许检验员发起放行但仍需复核；V3新增独立QA_RELEASE授权和原检验员禁止解冻。历史审计应如实显示当时权限和规则，不使用新规则改写过去审批人。未提供旧规则完整抽样表，不能据此编写全部V2抽样判断。"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "07_追溯页面与角色.md",
+      "kind": "md",
+      "title": "追溯工作台、质量处置与召回页面",
+      "sections": [
+        {
+          "heading": "批次详情页",
+          "text": [
+            "头部显示工单、产品、根/父批、批次状态、现场量、可用量、已发运量、拆分量、规则版本与数据截至时间。图形区可展开上游来料、工序、下游子批和发运；支持切换单位显示但禁止把不同单位聚合成单个总数。缺失关系用醒目标记，不能画一条无来源的推断边补齐。",
+            "证据页签分原始采集、检验、审核、放行、冻结与修改历史。显示原始测量精度与展示精度差异。父批拆分关闭后显示只读数量，但保留检验及继承路径。"
+          ]
+        },
+        {
+          "heading": "质量处置页",
+          "text": [
+            "左侧列不合格与缺测事实，右侧列受影响叶批和现场可冻结数。复检入口创建新单并显示原单引用；通过复检的状态不能自动隐藏初检失败。解冻按钮仅对授权人开放，必须填写处置结论和证据；让步接收要求客户同意编号与适用数量。"
+          ]
+        },
+        {
+          "heading": "召回工作台",
+          "text": [
+            "按客户及收货地点展示发运、通知、响应、待退回、已确认退回、最终处置数量。现场冻结350件与已发运召回650件分开显示；同一客户甲有两笔发运，汇总500件但必须保留两个发运ID。不同客户不能互看召回详情。",
+            "导出追溯报告必须带快照截至时间和未完成数据项；长图和长表可分页，不能裁掉路径。暂无资料的字段显示未提供或待确认，不显示0来伪装完整。"
+          ]
+        }
+      ]
+    }
+  ],
+  "expected": {
+    "chapters": [
+      {
+        "title": "引言、业务目标与适用范围",
+        "min_chars": 1500,
+        "topics": [
+          "一期常州一厂",
+          "两产品两生产线",
+          "排除委外合批及多厂"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx"
+        ]
+      },
+      {
+        "title": "角色、权限与审计职责",
+        "min_chars": 1800,
+        "topics": [
+          "操作检验复核放行隔离",
+          "租户客户权限",
+          "管理员发布规则"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "领域实体与数据字典",
+        "min_chars": 4200,
+        "topics": [
+          "至少60不同字段",
+          "九类实体关系",
+          "必填条件与数值精度",
+          "不同status语义"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx"
+        ]
+      },
+      {
+        "title": "工单、来料与投料采集",
+        "min_chars": 2200,
+        "topics": [
+          "ERP边界",
+          "多对多投料",
+          "单位校验",
+          "幂等与缺失引用"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "工序记录与规则版本",
+        "min_chars": 2300,
+        "topics": [
+          "actual_start冻结版本",
+          "温度时间扭矩闭区间",
+          "缺测和校准",
+          "V2历史"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "06_历史规则V2归档.md"
+        ]
+      },
+      {
+        "title": "抽样、检验与复核",
+        "min_chars": 2600,
+        "topics": [
+          "500/501/1200边界",
+          "Ac/Re与缺陷率",
+          "INCOMPLETE",
+          "留样与复检"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "冻结、放行与质量处置",
+        "min_chars": 2600,
+        "topics": [
+          "同事务冻结",
+          "正式放行独立",
+          "返工报废让步",
+          "部分解冻拆分"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "03_质量规则V3.docx",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "拆分谱系与数量守恒",
+        "min_chars": 2400,
+        "topics": [
+          "有向无环",
+          "原子父减子增",
+          "根产量与叶物理量",
+          "kg/件隔离"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "正反向追溯与完整性",
+        "min_chars": 2600,
+        "topics": [
+          "RM-AL-240601正向",
+          "SH-001反向",
+          "路径证据",
+          "缺口和快照"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "发运、召回与客户响应",
+        "min_chars": 2400,
+        "topics": [
+          "350现场/650发运",
+          "客户甲500/乙150",
+          "召回不改库存",
+          "最终处置"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "05_车间异常纪要.txt",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "接口契约与事件模型",
+        "min_chars": 2700,
+        "topics": [
+          "事件信封",
+          "接口字段错误码",
+          "payload冲突",
+          "权限复查"
+        ],
+        "source_paths": [
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "离线、迟到与异常恢复",
+        "min_chars": 2300,
+        "topics": [
+          "24小时缓存",
+          "依赖乱序",
+          "7分钟时钟偏差",
+          "重复与重放"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "页面、报表与导出原型",
+        "min_chars": 2000,
+        "topics": [
+          "批次详情",
+          "质量处置",
+          "召回工作台",
+          "图表分页和快照"
+        ],
+        "source_paths": [
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "性能、安全及运行约束",
+        "min_chars": 1700,
+        "topics": [
+          "500万事件20万批",
+          "10000节点20000边",
+          "30分钟回放",
+          "目标未验证"
+        ],
+        "source_paths": [
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "验收场景与需求追溯",
+        "min_chars": 3000,
+        "topics": [
+          "字段与业务覆盖",
+          "并发原子性",
+          "全部计算及异常",
+          "长图表可读"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt",
+          "06_历史规则V2归档.md",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "待确认问题与实施建议",
+        "min_chars": 1300,
+        "topics": [
+          "大批抽样",
+          "保质期留存灾备",
+          "ERP端点",
+          "建议与批准边界"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "05_车间异常纪要.txt",
+          "06_历史规则V2归档.md"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "F01",
+        "statement": "一期常州一厂两线，两成品按件，铝材按kg，不能直接汇总",
+        "source": "01_制造质量调研.docx",
+        "locator": "1 工厂与项目边界",
+        "required_tokens": [
+          "MTR-08",
+          "MTR-12",
+          "kg",
+          "件"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F02",
+        "statement": "来料与成品根批多对多，子批继承根批谱系，不复制原始事实",
+        "source": "01_制造质量调研.docx",
+        "locator": "2 核心业务链",
+        "required_tokens": [
+          "多对多",
+          "子批",
+          "继承"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F03",
+        "statement": "RM-AL-240601只关联两根批及三个末端叶批，不含RM-AL-240602",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "投料关系!A2:I4；拆分关系!A2:F3",
+        "required_tokens": [
+          "RM-AL-240601",
+          "FG-A-0618-01A",
+          "FG-A-0618-01B",
+          "FG-A-0618-02"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F04",
+        "statement": "根批600拆成400+200，父批不再直接发运，不能重复计产量",
+        "source": "03_质量规则V3.docx",
+        "locator": "6 批次拆分与守恒",
+        "required_tokens": [
+          "600",
+          "400",
+          "200",
+          "SPLIT_CLOSED"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F05",
+        "statement": "现场冻结350仍是现场量，可用量为0",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "成品批次!A3:P5；冻结记录!A2:I4",
+        "required_tokens": [
+          "350",
+          "可用",
+          "0"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F06",
+        "statement": "关联发运650件，客户甲500、乙150，保持三条发运ID",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "发货明细!A2:K4",
+        "required_tokens": [
+          "650",
+          "500",
+          "150",
+          "SH-001",
+          "SH-003"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F07",
+        "statement": "召回发起不产生退库，不改已发运数量",
+        "source": "01_制造质量调研.docx",
+        "locator": "4 追溯与召回业务目标",
+        "required_tokens": [
+          "召回",
+          "实物",
+          "退回"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F08",
+        "statement": "温度175至185含两端，时长至少7200秒，扭矩23至27含两端",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "175",
+          "185",
+          "7200",
+          "23",
+          "27"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F09",
+        "statement": "174.999或27.001不可经展示舍入变成合格",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "174.999",
+          "27.001",
+          "精度"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F10",
+        "statement": "≤500抽32且Ac0/Re1，501至1200抽50且Ac1/Re2",
+        "source": "03_质量规则V3.docx",
+        "locator": "3 抽样判定",
+        "required_tokens": [
+          "500",
+          "501",
+          "1200",
+          "32",
+          "50",
+          "Ac",
+          "Re"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F11",
+        "statement": "50件2件不合格判FAIL，复检50件0缺陷未审核不解冻",
+        "source": "05_车间异常纪要.txt",
+        "locator": "2 留样与复检情景",
+        "required_tokens": [
+          "INSP-004",
+          "INSP-005",
+          "FAIL",
+          "SUBMITTED"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F12",
+        "statement": "PASS非正式放行，QA_RELEASE独立且原检验员不可解冻",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "状态字典（隐藏）",
+        "required_tokens": [
+          "PASS",
+          "QA_RELEASE",
+          "解冻"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F13",
+        "statement": "缺测INCOMPLETE，不能空值当0或缺异常当PASS",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "INCOMPLETE",
+          "空值"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F14",
+        "statement": "V3按2026-06-01后actual_start冻结，不倒改旧规则",
+        "source": "03_质量规则V3.docx",
+        "locator": "1 规则生效与适用",
+        "required_tokens": [
+          "2026-06-01",
+          "actual_start",
+          "版本"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F15",
+        "statement": "相同event_id不同payload_hash是409冲突，不覆盖原事实",
+        "source": "04_事件与接口契约.md",
+        "locator": "1 事件信封与幂等",
+        "required_tokens": [
+          "event_id",
+          "payload_hash",
+          "409"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F16",
+        "statement": "时间偏差超过5分钟标TIME_SKEW，原设备时间保留",
+        "source": "04_事件与接口契约.md",
+        "locator": "1 事件信封与幂等",
+        "required_tokens": [
+          "5",
+          "TIME_SKEW"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F17",
+        "statement": "网关离线最多24小时，不允许离线新放行与发运",
+        "source": "01_制造质量调研.docx",
+        "locator": "5 使用环境",
+        "required_tokens": [
+          "24",
+          "放行",
+          "发运"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F18",
+        "statement": "节点10000边20000超限需异步或分页并提示，不静默宣称完整",
+        "source": "05_车间异常纪要.txt",
+        "locator": "3 有条件性能目标",
+        "required_tokens": [
+          "10000",
+          "20000",
+          "完整"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F19",
+        "statement": "导出和翻页沿用snapshot_id与as_of防止混合时点",
+        "source": "04_事件与接口契约.md",
+        "locator": "4 追溯查询与导出",
+        "required_tokens": [
+          "snapshot_id",
+          "as_of"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F20",
+        "statement": "让步接收必须关联客户书面同意编号和范围",
+        "source": "03_质量规则V3.docx",
+        "locator": "5 处置决策",
+        "required_tokens": [
+          "让步",
+          "客户",
+          "编号"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F21",
+        "statement": "隐藏状态字典是有效业务配置必须读取",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "阅读说明!A5:B5；状态字典",
+        "required_tokens": [
+          "状态字典",
+          "QA_REVIEW"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F22",
+        "statement": "产量核对H/I是公式，应按输入复算而非将缺缓存视为0",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "产量核对!H2:I6",
+        "required_tokens": [
+          "initial_qty",
+          "on_hand_qty",
+          "split_out_qty"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F23",
+        "statement": "预警材料与裂纹只有关联未证实根因",
+        "source": "05_车间异常纪要.txt",
+        "locator": "2 留样与复检情景",
+        "required_tokens": [
+          "根因",
+          "未"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F24",
+        "statement": "proof路径只是未附凭证的字段样例，不能声称已验证签收文件",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "阅读说明!A10:B10",
+        "required_tokens": [
+          "凭证",
+          "未附"
+        ],
+        "severity": "critical"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "C01",
+        "description": "关联材料消耗量与未投入余额",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "120+80=200kg;500-200=300kg",
+        "result": "已投200；本样例余额300",
+        "unit": "kg"
+      },
+      {
+        "id": "C02",
+        "description": "受影响原始成品量，不重复加拆分子批",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "根批600+400=1000；叶批400+200+400=1000",
+        "result": 1000,
+        "unit": "件"
+      },
+      {
+        "id": "C03",
+        "description": "现场与发运守恒",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "现场100+50+200=350；发运300+150+200=650；350+650=1000",
+        "result": "现场350；发运650；合计1000",
+        "unit": "件"
+      },
+      {
+        "id": "C04",
+        "description": "按客户汇总召回",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "CUS-01=300+200=500；CUS-02=150",
+        "result": "客户甲500；客户乙150",
+        "unit": "件"
+      },
+      {
+        "id": "C05",
+        "description": "留样缺陷率及判定",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "2/50*100%=4%；defect_count=2≥Re2",
+        "result": "4%，FAIL",
+        "unit": "%"
+      },
+      {
+        "id": "C06",
+        "description": "全工作簿批次守恒与真实原产量",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "各行initial_qty-(on_hand_qty+dispatched_qty+split_out_qty+scrap_qty)=0；全部根批600+400+500=1500",
+        "result": "每行delta_qty=0；原产量1500，而非2100",
+        "unit": "件"
+      },
+      {
+        "id": "C07",
+        "description": "单网关24小时积压及30分钟回放吞吐",
+        "source": "05_车间异常纪要.txt",
+        "formula": "24*60*1000=1440000；1440000/(30*60)=800",
+        "result": "积压1440000条；仅清旧积压需800条/秒，不含新增事件",
+        "unit": "事件/秒"
+      }
+    ],
+    "must_not_claim": [
+      "不得把父600与子400+200重复统计为1200件新产量。",
+      "不得把铝材200kg和成品1000件相加为1200。",
+      "不得把冻结350件写成报废或0现场库存。",
+      "不得将INSP-005未审核复检视为自动解冻。",
+      "不得因供应商相同把RM-AL-240602自动纳入本次召回。",
+      "不得用V2的170～190℃或22～28N·m覆盖V3。",
+      "不得声称裂纹根因已证实为供应商问题。",
+      "不得把隐藏Sheet忽略或把缺失公式缓存当成0。",
+      "不得把未附签收凭证路径当作已读取文件。",
+      "不得承诺恰好一次事件投递、真实监管合规、已验证生产SLO或未决保质期。"
+    ],
+    "gaps": [
+      {
+        "topic": "超过1200件批次抽样规则",
+        "reason": "当前仅批准≤1200件",
+        "expected_handling": "列阻塞该类放行的待确认项，可提方案但不能直接套用50样本。"
+      },
+      {
+        "topic": "保质期、到期缺失补录、证据留存与灾备",
+        "reason": "资料没有批准值",
+        "expected_handling": "空值保持未知；单列决策人和影响，不虚构外部法规。"
+      },
+      {
+        "topic": "ERP端点与跨厂身份",
+        "reason": "一期只明确边界未提供真实契约",
+        "expected_handling": "输出逻辑接口需求及建议字段，不写成已对接真实系统。"
+      },
+      {
+        "topic": "客户凭证附件与裂纹最终根因",
+        "reason": "只有路径字段和风险关联",
+        "expected_handling": "指出证据未附与调查待完成，不能补成签收证据或确定原因。"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "flowchart",
+        "title": "来料、根批、拆分叶批与客户追溯关系",
+        "requirements": [
+          "RM-AL-240601连接两个根批",
+          "600父批拆400+200且不重复计数量",
+          "三条发运及两客户",
+          "边标件或kg，其他来料批不误入"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "异常冻结、复检与正式处置流程",
+        "requirements": [
+          "初检失败保留",
+          "复检不自动解冻",
+          "QA_RELEASE与原检验员隔离",
+          "让步接收客户同意"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "离线事件重放与冲突处理",
+        "requirements": [
+          "同ID同内容幂等",
+          "同ID异内容409隔离",
+          "依赖未到暂挂",
+          "保留occurred_at和received_at"
+        ]
+      },
+      {
+        "kind": "prototype",
+        "title": "批次详情页",
+        "requirements": [
+          "现场、可用、发运、拆分数量分列",
+          "快照时间与完整性提示",
+          "根父子链可展开",
+          "缺失证据显示未提供"
+        ]
+      },
+      {
+        "kind": "prototype",
+        "title": "质量处置与召回工作台",
+        "requirements": [
+          "现场350与发运650分栏",
+          "客户甲500包含两发运",
+          "复检待审不显示已解冻",
+          "客户范围权限与同意编号"
+        ]
+      }
+    ],
+    "acceptance": [
+      "正文35000～45000字符，至少60个不同实体字段给出类型、必填及规则；不能把同名status的重复条目当作独立业务讲解凑数。",
+      "每个跨Sheet引用都能连接到存在的样例，解析隐藏状态字典和产量核对公式；没有读取的凭证不被伪造。",
+      "从RM-AL-240601正向到两根批、三叶批、三发运和两客户；从SH-001反向到WO-0618-A、两类原料、热处理/装配与检验，路径和数量准确。",
+      "七组计算结果可复算；30分钟回放所需800条/秒注明不含新增事件。",
+      "至少30条可执行验收覆盖字段约束、温度扭矩精度、500/501/1200边界、缺测、权限、冻结与发运并发、拆分原子性、离线重传、单位错误、快照分页和缺链。",
+      "全书及图表不把复检、PASS、正式放行、解冻混为一个动作；业务事实、调查未决和设计建议清楚区分。",
+      "Word长字段表、谱系图和原型不裁切；有目录、页码、连续编号、重复表头及来源定位。"
+    ]
+  },
+  "execution": {
+    "web_mode": "disabled",
+    "local_round_limit": 3,
+    "web_round_limit": 2,
+    "notes": [
+      "所有组织、人员、交易、产品及规则均为虚构测试数据。",
+      "本地研究最多 3 轮，每轮可进行多次有界工具调用；该用例禁用联网，必须记录 Tavily 不可用并进入明确标注的建议补全，不能伪称搜索成功。",
+      "只向被测智能体上传 sources 目录并发送 prompt；expected 为独立验收参考，不能加入资料包。",
+      "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代；字数达标不能替代事实正确与覆盖完整，不得重复段落或表格凑数。"
+    ]
+  }
+}

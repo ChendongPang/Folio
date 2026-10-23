@@ -1,0 +1,57 @@
+id: srs
+version: 2
+name: 软件需求规格说明书
+purpose: Express business needs as concrete requirements supporting system design, development and testing
+audience: [Product, Architecture, Development, Testing, Implementation, Operations]
+
+guidance_policy:
+  mode: advisory
+  extra_review: false
+  retry_for_guidance: false
+  block_delivery: false
+
+writing:
+  perspective: Describe the behavior, capabilities and constraints the system should provide
+  style: Be precise and clearly structured to support implementation, verification and traceability
+  detail: Elaborate according to business complexity and available materials, prioritizing implementation-relevant details
+  organization: Follow the template and directory; related sections may jointly describe a complete function
+
+focus:
+  functional:
+    - Specify applicable roles, triggers and relevant preconditions
+    - Explain inputs, validation rules, processing behavior and outputs
+    - State applicable rules for permissions and state transitions
+    - Explain important error conditions and their handling outcomes
+    - Make behavior descriptions sufficiently clear to support test cases where possible
+  data:
+    - Explain the meaning, relationships and constraints of relevant business data
+    - Describe field values, requiredness, defaults and editability as needed
+    - Explain creation, modification, deactivation and deletion rules when covering the data lifecycle
+  interface:
+    - Identify parties and purpose for external interactions
+    - Explain relevant input/output data and interaction conditions
+    - Describe failure, timeout, retry and duplicate-handling requirements where relevant
+  nonfunctional:
+    - Explain applicable performance, availability, security and operational constraints
+    - State established metrics together with their applicability conditions
+    - Describe verification methods when feasible
+    - Do not present guessed metrics as confirmed requirements
+  consistency:
+    - Use consistent business terminology, role names and state names
+    - Check alignment among descriptions of functions, pages, data and interfaces
+    - Preserve justified differences in applicability instead of forcing uniformity
+
+visuals:
+  - Use UI prototypes when they clarify fields, action entry points and page states
+  - Use flowcharts when they clarify branches, state changes and exception handling
+  - Keep figures consistent with associated prose; do not add business rules absent from the text
+source_policy:
+  - Distinguish existing business evidence from model-proposed designs
+  - Highlight model proposals in red according to existing provenance rules
+  - Do not invent regulations, people, dates, versions or approval records
+avoid:
+  - Merely saying a function is supported without necessary behavior details
+  - Excessive vague terms such as timely, flexible or efficient
+  - Expanding into algorithms, code or physical database design without being asked
+  - Mechanically converting each guideline into a heading, table or acceptance checklist
+  - Repeated retrieval, expansion or rework solely because advice was not fully adopted

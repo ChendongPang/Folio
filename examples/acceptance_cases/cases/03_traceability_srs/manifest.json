@@ -1,0 +1,55 @@
+{
+  "case_id": "TC03",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_制造质量调研.docx",
+      "kind": "docx",
+      "title": "制造与质量追溯调研（虚构工厂 2026-06-15）",
+      "bytes": 39182,
+      "sha256": "eabbbef578fa10be11513bdb716fdddb6ad9780f0bab1ecf963bc962f4a14e2f"
+    },
+    {
+      "path": "02_追溯数据与样例.xlsx",
+      "kind": "xlsx",
+      "title": "追溯字段、业务样例与计算表（截至2026-06-22 17:00+08:00）",
+      "bytes": 26279,
+      "sha256": "c6e4eee607b743d7c3d49775fbfac2e5b15bc2a3b4332361c73bdca8be5950e0"
+    },
+    {
+      "path": "03_质量规则V3.docx",
+      "kind": "docx",
+      "title": "质量规则 QC-MTR-V3（2026-06-01 生效）",
+      "bytes": 39301,
+      "sha256": "31a25fbcb9687c9a640973b976fde2413929f61e2bffd3cd35d9b4b1e5bb5879"
+    },
+    {
+      "path": "04_事件与接口契约.md",
+      "kind": "md",
+      "title": "采集、追溯与质量事件接口契约 V1.4",
+      "bytes": 2968,
+      "sha256": "e923a1fcc0720a4a813bd9136f2a2b5267781d3e0da36d6e6cd963ba90a042e4"
+    },
+    {
+      "path": "05_车间异常纪要.txt",
+      "kind": "txt",
+      "title": "车间异常与召回演练纪要 2026-06-22",
+      "bytes": 2516,
+      "sha256": "6f477d5b113a5a99c6ae2ab63980d7a343ce6007df164e64723072563c2601a0"
+    },
+    {
+      "path": "06_历史规则V2归档.md",
+      "kind": "md",
+      "title": "归档质量规则 QC-MTR-V2",
+      "bytes": 545,
+      "sha256": "7f1c89c23d194ba26d9f179995efade4531ae7f7de78e73774eeeec61b89abc2"
+    },
+    {
+      "path": "07_追溯页面与角色.md",
+      "kind": "md",
+      "title": "追溯工作台、质量处置与召回页面",
+      "bytes": 1467,
+      "sha256": "863a8d717c9b592e21690cb8ee8d4b52c88f766fd74dd7c4a1c97a2d475fa310"
+    }
+  ]
+}

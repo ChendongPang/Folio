@@ -1,0 +1,48 @@
+{
+  "case_id": "TC06",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_运维交付范围.docx",
+      "kind": "docx",
+      "title": "云栈协同平台运维手册交付范围",
+      "bytes": 38452,
+      "sha256": "6e8949b025d4505e1eb08be0d09dc29dc95a092b78c72bee48ed73e70cc7a74b"
+    },
+    {
+      "path": "02_架构与环境清单.md",
+      "kind": "md",
+      "title": "当前架构、服务和权限范围",
+      "bytes": 1801,
+      "sha256": "db46b8623643b96bc3b0992bb515ddba74d8368503a0a0f9ad2632733d5a4ee3"
+    },
+    {
+      "path": "03_告警与指标.xlsx",
+      "kind": "xlsx",
+      "title": "监控定义、已批准阈值和待定项",
+      "bytes": 7772,
+      "sha256": "00e11b435ac3bf7a7897686fc06c87be628ed77c6269c1e734e7f3aaeb0437d2"
+    },
+    {
+      "path": "04_发布回滚与交接规程.txt",
+      "kind": "txt",
+      "title": "发布、回滚和交接的已确认流程",
+      "bytes": 1620,
+      "sha256": "6f823a3c22be117a4fe6d9bed9f095bae5e096ebba9b69c1c7a76b181c66e44a"
+    },
+    {
+      "path": "05_历史事件与复盘.docx",
+      "kind": "docx",
+      "title": "2026年10月导出异常事件模拟复盘",
+      "bytes": 38197,
+      "sha256": "b59e7f86f6f4500f6946f5fa6bdb81c407235c002b2681815ca32459b03f1fbe"
+    },
+    {
+      "path": "06_演练与容量计划_草稿.pptx",
+      "kind": "pptx",
+      "title": "运维演练计划草稿：未批准",
+      "bytes": 30926,
+      "sha256": "043f299a605f8c7e88ac93077ea341ab837a81204ed4ea99ad2a8e97af83d3f0"
+    }
+  ]
+}

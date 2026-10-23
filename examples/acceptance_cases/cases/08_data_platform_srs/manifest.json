@@ -1,0 +1,48 @@
+{
+  "case_id": "TC08",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_平台建设与业务全景.md",
+      "kind": "md",
+      "title": "星澜数据治理平台建设与业务全景 V1.3",
+      "bytes": 9597,
+      "sha256": "8ccbdbdff293101be14e18ca05da4cf29020e5eaecc7a174f1289cf86c65d330"
+    },
+    {
+      "path": "02_领域需求与状态说明.docx",
+      "kind": "docx",
+      "title": "十二对象领域需求与状态说明",
+      "bytes": 43314,
+      "sha256": "918a5eab46db7e4490604a132002753c84195a9a766efd2281eeed50d5da64c6"
+    },
+    {
+      "path": "03_对象字段字典.xlsx",
+      "kind": "xlsx",
+      "title": "对象字段字典：12 Sheet、108字段",
+      "bytes": 24428,
+      "sha256": "11364c8a3da662a182240acc6bcbfac1350098c0d2c6a5cf139cdc0404681417"
+    },
+    {
+      "path": "04_接口规则与验收台账.xlsx",
+      "kind": "xlsx",
+      "title": "48接口、48规则与边界验收台账",
+      "bytes": 17523,
+      "sha256": "b94d06041d640e4f2db4e22f6a03eabea9d40060f3091332c711c8849f464c01"
+    },
+    {
+      "path": "05_架构边界与运行约束.pdf",
+      "kind": "pdf",
+      "title": "架构边界与运行约束",
+      "bytes": 681394,
+      "sha256": "6716caa47437e66bb51530418110b35748374484b39881b22798360431628a3c"
+    },
+    {
+      "path": "06_最终补充范围.txt",
+      "kind": "txt",
+      "title": "最终补充范围（不可遗漏的末尾要求）",
+      "bytes": 1107,
+      "sha256": "fa1d8a1eedc1b51fe45765c1dad796d3ce4b9c5179ea950438b61b6f3980d44a"
+    }
+  ]
+}

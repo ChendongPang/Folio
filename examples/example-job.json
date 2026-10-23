@@ -1,0 +1,8 @@
+{
+  "title": "外汇交易需求说明书（演示）",
+  "document_id": "fx-requirements-example",
+  "knowledge_path": "examples/knowledge",
+  "runtime": "llm",
+  "include_evidence_appendix": false,
+  "user_request": "根据演示知识库编写外汇交易需求说明书，说明交易录入、双人复核与撤销审批规则。"
+}

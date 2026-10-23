@@ -1,0 +1,724 @@
+{
+  "id": "TC03",
+  "name": "砺川精工制造质量追溯需求规格说明书",
+  "document_type": "srs",
+  "output_title": "砺川精工制造质量追溯平台需求规格说明书",
+  "output_filename": "砺川精工制造质量追溯平台需求规格说明书.docx",
+  "target_chars": {
+    "min": 35000,
+    "max": 45000
+  },
+  "audience": [
+    "制造与质量负责人",
+    "MES研发团队",
+    "数据集成团队",
+    "工厂测试与验收组"
+  ],
+  "focus": [
+    "大型多Sheet表格渐进读取",
+    "98个实际业务字段",
+    "隐藏Sheet与公式识别",
+    "跨表外键和有向批次谱系",
+    "单位隔离与拆分重复计数",
+    "异常和历史版本隔离",
+    "长SRS与追溯图一致"
+  ],
+  "expected": {
+    "chapters": [
+      {
+        "title": "引言、业务目标与适用范围",
+        "min_chars": 1500,
+        "topics": [
+          "一期常州一厂",
+          "两产品两生产线",
+          "排除委外合批及多厂"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx"
+        ]
+      },
+      {
+        "title": "角色、权限与审计职责",
+        "min_chars": 1800,
+        "topics": [
+          "操作检验复核放行隔离",
+          "租户客户权限",
+          "管理员发布规则"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "领域实体与数据字典",
+        "min_chars": 4200,
+        "topics": [
+          "至少60不同字段",
+          "九类实体关系",
+          "必填条件与数值精度",
+          "不同status语义"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx"
+        ]
+      },
+      {
+        "title": "工单、来料与投料采集",
+        "min_chars": 2200,
+        "topics": [
+          "ERP边界",
+          "多对多投料",
+          "单位校验",
+          "幂等与缺失引用"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "工序记录与规则版本",
+        "min_chars": 2300,
+        "topics": [
+          "actual_start冻结版本",
+          "温度时间扭矩闭区间",
+          "缺测和校准",
+          "V2历史"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "06_历史规则V2归档.md"
+        ]
+      },
+      {
+        "title": "抽样、检验与复核",
+        "min_chars": 2600,
+        "topics": [
+          "500/501/1200边界",
+          "Ac/Re与缺陷率",
+          "INCOMPLETE",
+          "留样与复检"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "冻结、放行与质量处置",
+        "min_chars": 2600,
+        "topics": [
+          "同事务冻结",
+          "正式放行独立",
+          "返工报废让步",
+          "部分解冻拆分"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "03_质量规则V3.docx",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "拆分谱系与数量守恒",
+        "min_chars": 2400,
+        "topics": [
+          "有向无环",
+          "原子父减子增",
+          "根产量与叶物理量",
+          "kg/件隔离"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "正反向追溯与完整性",
+        "min_chars": 2600,
+        "topics": [
+          "RM-AL-240601正向",
+          "SH-001反向",
+          "路径证据",
+          "缺口和快照"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "发运、召回与客户响应",
+        "min_chars": 2400,
+        "topics": [
+          "350现场/650发运",
+          "客户甲500/乙150",
+          "召回不改库存",
+          "最终处置"
+        ],
+        "source_paths": [
+          "02_追溯数据与样例.xlsx",
+          "05_车间异常纪要.txt",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "接口契约与事件模型",
+        "min_chars": 2700,
+        "topics": [
+          "事件信封",
+          "接口字段错误码",
+          "payload冲突",
+          "权限复查"
+        ],
+        "source_paths": [
+          "04_事件与接口契约.md"
+        ]
+      },
+      {
+        "title": "离线、迟到与异常恢复",
+        "min_chars": 2300,
+        "topics": [
+          "24小时缓存",
+          "依赖乱序",
+          "7分钟时钟偏差",
+          "重复与重放"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "页面、报表与导出原型",
+        "min_chars": 2000,
+        "topics": [
+          "批次详情",
+          "质量处置",
+          "召回工作台",
+          "图表分页和快照"
+        ],
+        "source_paths": [
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "性能、安全及运行约束",
+        "min_chars": 1700,
+        "topics": [
+          "500万事件20万批",
+          "10000节点20000边",
+          "30分钟回放",
+          "目标未验证"
+        ],
+        "source_paths": [
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt"
+        ]
+      },
+      {
+        "title": "验收场景与需求追溯",
+        "min_chars": 3000,
+        "topics": [
+          "字段与业务覆盖",
+          "并发原子性",
+          "全部计算及异常",
+          "长图表可读"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "02_追溯数据与样例.xlsx",
+          "03_质量规则V3.docx",
+          "04_事件与接口契约.md",
+          "05_车间异常纪要.txt",
+          "06_历史规则V2归档.md",
+          "07_追溯页面与角色.md"
+        ]
+      },
+      {
+        "title": "待确认问题与实施建议",
+        "min_chars": 1300,
+        "topics": [
+          "大批抽样",
+          "保质期留存灾备",
+          "ERP端点",
+          "建议与批准边界"
+        ],
+        "source_paths": [
+          "01_制造质量调研.docx",
+          "05_车间异常纪要.txt",
+          "06_历史规则V2归档.md"
+        ]
+      }
+    ],
+    "facts": [
+      {
+        "id": "F01",
+        "statement": "一期常州一厂两线，两成品按件，铝材按kg，不能直接汇总",
+        "source": "01_制造质量调研.docx",
+        "locator": "1 工厂与项目边界",
+        "required_tokens": [
+          "MTR-08",
+          "MTR-12",
+          "kg",
+          "件"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F02",
+        "statement": "来料与成品根批多对多，子批继承根批谱系，不复制原始事实",
+        "source": "01_制造质量调研.docx",
+        "locator": "2 核心业务链",
+        "required_tokens": [
+          "多对多",
+          "子批",
+          "继承"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F03",
+        "statement": "RM-AL-240601只关联两根批及三个末端叶批，不含RM-AL-240602",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "投料关系!A2:I4；拆分关系!A2:F3",
+        "required_tokens": [
+          "RM-AL-240601",
+          "FG-A-0618-01A",
+          "FG-A-0618-01B",
+          "FG-A-0618-02"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F04",
+        "statement": "根批600拆成400+200，父批不再直接发运，不能重复计产量",
+        "source": "03_质量规则V3.docx",
+        "locator": "6 批次拆分与守恒",
+        "required_tokens": [
+          "600",
+          "400",
+          "200",
+          "SPLIT_CLOSED"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F05",
+        "statement": "现场冻结350仍是现场量，可用量为0",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "成品批次!A3:P5；冻结记录!A2:I4",
+        "required_tokens": [
+          "350",
+          "可用",
+          "0"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F06",
+        "statement": "关联发运650件，客户甲500、乙150，保持三条发运ID",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "发货明细!A2:K4",
+        "required_tokens": [
+          "650",
+          "500",
+          "150",
+          "SH-001",
+          "SH-003"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F07",
+        "statement": "召回发起不产生退库，不改已发运数量",
+        "source": "01_制造质量调研.docx",
+        "locator": "4 追溯与召回业务目标",
+        "required_tokens": [
+          "召回",
+          "实物",
+          "退回"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F08",
+        "statement": "温度175至185含两端，时长至少7200秒，扭矩23至27含两端",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "175",
+          "185",
+          "7200",
+          "23",
+          "27"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F09",
+        "statement": "174.999或27.001不可经展示舍入变成合格",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "174.999",
+          "27.001",
+          "精度"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F10",
+        "statement": "≤500抽32且Ac0/Re1，501至1200抽50且Ac1/Re2",
+        "source": "03_质量规则V3.docx",
+        "locator": "3 抽样判定",
+        "required_tokens": [
+          "500",
+          "501",
+          "1200",
+          "32",
+          "50",
+          "Ac",
+          "Re"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F11",
+        "statement": "50件2件不合格判FAIL，复检50件0缺陷未审核不解冻",
+        "source": "05_车间异常纪要.txt",
+        "locator": "2 留样与复检情景",
+        "required_tokens": [
+          "INSP-004",
+          "INSP-005",
+          "FAIL",
+          "SUBMITTED"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F12",
+        "statement": "PASS非正式放行，QA_RELEASE独立且原检验员不可解冻",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "状态字典（隐藏）",
+        "required_tokens": [
+          "PASS",
+          "QA_RELEASE",
+          "解冻"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F13",
+        "statement": "缺测INCOMPLETE，不能空值当0或缺异常当PASS",
+        "source": "03_质量规则V3.docx",
+        "locator": "2 工序阈值与缺测",
+        "required_tokens": [
+          "INCOMPLETE",
+          "空值"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F14",
+        "statement": "V3按2026-06-01后actual_start冻结，不倒改旧规则",
+        "source": "03_质量规则V3.docx",
+        "locator": "1 规则生效与适用",
+        "required_tokens": [
+          "2026-06-01",
+          "actual_start",
+          "版本"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F15",
+        "statement": "相同event_id不同payload_hash是409冲突，不覆盖原事实",
+        "source": "04_事件与接口契约.md",
+        "locator": "1 事件信封与幂等",
+        "required_tokens": [
+          "event_id",
+          "payload_hash",
+          "409"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F16",
+        "statement": "时间偏差超过5分钟标TIME_SKEW，原设备时间保留",
+        "source": "04_事件与接口契约.md",
+        "locator": "1 事件信封与幂等",
+        "required_tokens": [
+          "5",
+          "TIME_SKEW"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F17",
+        "statement": "网关离线最多24小时，不允许离线新放行与发运",
+        "source": "01_制造质量调研.docx",
+        "locator": "5 使用环境",
+        "required_tokens": [
+          "24",
+          "放行",
+          "发运"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F18",
+        "statement": "节点10000边20000超限需异步或分页并提示，不静默宣称完整",
+        "source": "05_车间异常纪要.txt",
+        "locator": "3 有条件性能目标",
+        "required_tokens": [
+          "10000",
+          "20000",
+          "完整"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F19",
+        "statement": "导出和翻页沿用snapshot_id与as_of防止混合时点",
+        "source": "04_事件与接口契约.md",
+        "locator": "4 追溯查询与导出",
+        "required_tokens": [
+          "snapshot_id",
+          "as_of"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F20",
+        "statement": "让步接收必须关联客户书面同意编号和范围",
+        "source": "03_质量规则V3.docx",
+        "locator": "5 处置决策",
+        "required_tokens": [
+          "让步",
+          "客户",
+          "编号"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F21",
+        "statement": "隐藏状态字典是有效业务配置必须读取",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "阅读说明!A5:B5；状态字典",
+        "required_tokens": [
+          "状态字典",
+          "QA_REVIEW"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F22",
+        "statement": "产量核对H/I是公式，应按输入复算而非将缺缓存视为0",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "产量核对!H2:I6",
+        "required_tokens": [
+          "initial_qty",
+          "on_hand_qty",
+          "split_out_qty"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F23",
+        "statement": "预警材料与裂纹只有关联未证实根因",
+        "source": "05_车间异常纪要.txt",
+        "locator": "2 留样与复检情景",
+        "required_tokens": [
+          "根因",
+          "未"
+        ],
+        "severity": "critical"
+      },
+      {
+        "id": "F24",
+        "statement": "proof路径只是未附凭证的字段样例，不能声称已验证签收文件",
+        "source": "02_追溯数据与样例.xlsx",
+        "locator": "阅读说明!A10:B10",
+        "required_tokens": [
+          "凭证",
+          "未附"
+        ],
+        "severity": "critical"
+      }
+    ],
+    "calculations": [
+      {
+        "id": "C01",
+        "description": "关联材料消耗量与未投入余额",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "120+80=200kg;500-200=300kg",
+        "result": "已投200；本样例余额300",
+        "unit": "kg"
+      },
+      {
+        "id": "C02",
+        "description": "受影响原始成品量，不重复加拆分子批",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "根批600+400=1000；叶批400+200+400=1000",
+        "result": 1000,
+        "unit": "件"
+      },
+      {
+        "id": "C03",
+        "description": "现场与发运守恒",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "现场100+50+200=350；发运300+150+200=650；350+650=1000",
+        "result": "现场350；发运650；合计1000",
+        "unit": "件"
+      },
+      {
+        "id": "C04",
+        "description": "按客户汇总召回",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "CUS-01=300+200=500；CUS-02=150",
+        "result": "客户甲500；客户乙150",
+        "unit": "件"
+      },
+      {
+        "id": "C05",
+        "description": "留样缺陷率及判定",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "2/50*100%=4%；defect_count=2≥Re2",
+        "result": "4%，FAIL",
+        "unit": "%"
+      },
+      {
+        "id": "C06",
+        "description": "全工作簿批次守恒与真实原产量",
+        "source": "02_追溯数据与样例.xlsx",
+        "formula": "各行initial_qty-(on_hand_qty+dispatched_qty+split_out_qty+scrap_qty)=0；全部根批600+400+500=1500",
+        "result": "每行delta_qty=0；原产量1500，而非2100",
+        "unit": "件"
+      },
+      {
+        "id": "C07",
+        "description": "单网关24小时积压及30分钟回放吞吐",
+        "source": "05_车间异常纪要.txt",
+        "formula": "24*60*1000=1440000；1440000/(30*60)=800",
+        "result": "积压1440000条；仅清旧积压需800条/秒，不含新增事件",
+        "unit": "事件/秒"
+      }
+    ],
+    "must_not_claim": [
+      "不得把父600与子400+200重复统计为1200件新产量。",
+      "不得把铝材200kg和成品1000件相加为1200。",
+      "不得把冻结350件写成报废或0现场库存。",
+      "不得将INSP-005未审核复检视为自动解冻。",
+      "不得因供应商相同把RM-AL-240602自动纳入本次召回。",
+      "不得用V2的170～190℃或22～28N·m覆盖V3。",
+      "不得声称裂纹根因已证实为供应商问题。",
+      "不得把隐藏Sheet忽略或把缺失公式缓存当成0。",
+      "不得把未附签收凭证路径当作已读取文件。",
+      "不得承诺恰好一次事件投递、真实监管合规、已验证生产SLO或未决保质期。"
+    ],
+    "gaps": [
+      {
+        "topic": "超过1200件批次抽样规则",
+        "reason": "当前仅批准≤1200件",
+        "expected_handling": "列阻塞该类放行的待确认项，可提方案但不能直接套用50样本。"
+      },
+      {
+        "topic": "保质期、到期缺失补录、证据留存与灾备",
+        "reason": "资料没有批准值",
+        "expected_handling": "空值保持未知；单列决策人和影响，不虚构外部法规。"
+      },
+      {
+        "topic": "ERP端点与跨厂身份",
+        "reason": "一期只明确边界未提供真实契约",
+        "expected_handling": "输出逻辑接口需求及建议字段，不写成已对接真实系统。"
+      },
+      {
+        "topic": "客户凭证附件与裂纹最终根因",
+        "reason": "只有路径字段和风险关联",
+        "expected_handling": "指出证据未附与调查待完成，不能补成签收证据或确定原因。"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "flowchart",
+        "title": "来料、根批、拆分叶批与客户追溯关系",
+        "requirements": [
+          "RM-AL-240601连接两个根批",
+          "600父批拆400+200且不重复计数量",
+          "三条发运及两客户",
+          "边标件或kg，其他来料批不误入"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "异常冻结、复检与正式处置流程",
+        "requirements": [
+          "初检失败保留",
+          "复检不自动解冻",
+          "QA_RELEASE与原检验员隔离",
+          "让步接收客户同意"
+        ]
+      },
+      {
+        "kind": "flowchart",
+        "title": "离线事件重放与冲突处理",
+        "requirements": [
+          "同ID同内容幂等",
+          "同ID异内容409隔离",
+          "依赖未到暂挂",
+          "保留occurred_at和received_at"
+        ]
+      },
+      {
+        "kind": "prototype",
+        "title": "批次详情页",
+        "requirements": [
+          "现场、可用、发运、拆分数量分列",
+          "快照时间与完整性提示",
+          "根父子链可展开",
+          "缺失证据显示未提供"
+        ]
+      },
+      {
+        "kind": "prototype",
+        "title": "质量处置与召回工作台",
+        "requirements": [
+          "现场350与发运650分栏",
+          "客户甲500包含两发运",
+          "复检待审不显示已解冻",
+          "客户范围权限与同意编号"
+        ]
+      }
+    ],
+    "acceptance": [
+      "正文35000～45000字符，至少60个不同实体字段给出类型、必填及规则；不能把同名status的重复条目当作独立业务讲解凑数。",
+      "每个跨Sheet引用都能连接到存在的样例，解析隐藏状态字典和产量核对公式；没有读取的凭证不被伪造。",
+      "从RM-AL-240601正向到两根批、三叶批、三发运和两客户；从SH-001反向到WO-0618-A、两类原料、热处理/装配与检验，路径和数量准确。",
+      "七组计算结果可复算；30分钟回放所需800条/秒注明不含新增事件。",
+      "至少30条可执行验收覆盖字段约束、温度扭矩精度、500/501/1200边界、缺测、权限、冻结与发运并发、拆分原子性、离线重传、单位错误、快照分页和缺链。",
+      "全书及图表不把复检、PASS、正式放行、解冻混为一个动作；业务事实、调查未决和设计建议清楚区分。",
+      "Word长字段表、谱系图和原型不裁切；有目录、页码、连续编号、重复表头及来源定位。"
+    ]
+  },
+  "execution": {
+    "web_mode": "disabled",
+    "local_round_limit": 3,
+    "web_round_limit": 2,
+    "notes": [
+      "所有组织、人员、交易、产品及规则均为虚构测试数据。",
+      "本地研究最多 3 轮，每轮可进行多次有界工具调用；该用例禁用联网，必须记录 Tavily 不可用并进入明确标注的建议补全，不能伪称搜索成功。",
+      "只向被测智能体上传 sources 目录并发送 prompt；expected 为独立验收参考，不能加入资料包。",
+      "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代；字数达标不能替代事实正确与覆盖完整，不得重复段落或表格凑数。"
+    ]
+  },
+  "counting_method": "正文有效字符数：汉字、英文字母、数字逐字符计数，计入表格，不计封面、目录、标题、页眉页脚、空白和标点。页数只作观察，不作字数替代。"
+}

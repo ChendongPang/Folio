@@ -1,0 +1,63 @@
+{
+  "variant_id": "TV06",
+  "base_case_id": "TC06",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "文档模板.docx",
+      "role": "template",
+      "format": "docx",
+      "bytes": 39062,
+      "sha256": "3c14d3299063381b43afa2e2c1381abc144a61112edb78227c191143de107eda"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/01_运维交付范围.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 38452,
+      "sha256": "6e8949b025d4505e1eb08be0d09dc29dc95a092b78c72bee48ed73e70cc7a74b"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/02_架构与环境清单.md",
+      "role": "source",
+      "format": "md",
+      "bytes": 1801,
+      "sha256": "db46b8623643b96bc3b0992bb515ddba74d8368503a0a0f9ad2632733d5a4ee3"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/03_告警与指标.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 7772,
+      "sha256": "00e11b435ac3bf7a7897686fc06c87be628ed77c6269c1e734e7f3aaeb0437d2"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/04_发布回滚与交接规程.txt",
+      "role": "source",
+      "format": "txt",
+      "bytes": 1620,
+      "sha256": "6f823a3c22be117a4fe6d9bed9f095bae5e096ebba9b69c1c7a76b181c66e44a"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/05_历史事件与复盘.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 38197,
+      "sha256": "b59e7f86f6f4500f6946f5fa6bdb81c407235c002b2681815ca32459b03f1fbe"
+    },
+    {
+      "path": "../../cases/06_operations_manual/sources/06_演练与容量计划_草稿.pptx",
+      "role": "source",
+      "format": "pptx",
+      "bytes": 30926,
+      "sha256": "043f299a605f8c7e88ac93077ea341ab837a81204ed4ea99ad2a8e97af83d3f0"
+    }
+  ],
+  "do_not_upload": [
+    "expected.json",
+    "manifest.json",
+    "../../cases/06_operations_manual/expected/expected.json"
+  ],
+  "user_prompt": "prompt.txt",
+  "notes": "仅检查夹具可解析及约束结构；未进行真实模型长文生成验收。"
+}

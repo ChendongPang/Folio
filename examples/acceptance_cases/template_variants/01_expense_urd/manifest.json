@@ -1,0 +1,63 @@
+{
+  "variant_id": "TV01",
+  "base_case_id": "TC01",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "文档模板.docx",
+      "role": "template",
+      "format": "docx",
+      "bytes": 38663,
+      "sha256": "1dfdf7b141b6bf2cc17d9e76f484605d36501e2a496f1be2f2a81bb3440c5659"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/01_业务访谈.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 38884,
+      "sha256": "eb57d40ec610a52705e242496958c79016da2b4fd33f7c6aac74ac1848547f39"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/02_费用制度V1.2.docx",
+      "role": "source",
+      "format": "docx",
+      "bytes": 40125,
+      "sha256": "e241f88058ad4ea6f6aa2f7bc823a2882a22f91c502c4b56e8973deace26507c"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/03_试点报销记录.xlsx",
+      "role": "source",
+      "format": "xlsx",
+      "bytes": 9505,
+      "sha256": "56eefb641f0f3ddd5aba0bd152979bbeec82c4d320c2d388906eb85bb0a117f0"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/04_历史制度V0.9.md",
+      "role": "source",
+      "format": "md",
+      "bytes": 733,
+      "sha256": "95e785149947f10445493c484436c0a1fee421b642b137dcaad74ae2b0b341ca"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/05_页面与角色清单.md",
+      "role": "source",
+      "format": "md",
+      "bytes": 1307,
+      "sha256": "e23eb357c249b1326e05c08b0689da6fd190e46858180e0022640beaaee146f3"
+    },
+    {
+      "path": "../../cases/01_expense_urd/sources/06_系统边界与会议纪要.txt",
+      "role": "source",
+      "format": "txt",
+      "bytes": 1405,
+      "sha256": "94e19f8d232caed9459c295fca7e7a2cbd029dd7ee52ae4b5d666d632c629097"
+    }
+  ],
+  "do_not_upload": [
+    "expected.json",
+    "manifest.json",
+    "../../cases/01_expense_urd/expected/expected.json"
+  ],
+  "user_prompt": "prompt.txt",
+  "notes": "仅检查夹具可解析及约束结构；未进行真实模型长文生成验收。"
+}

@@ -1,0 +1,48 @@
+{
+  "case_id": "TC07",
+  "synthetic": true,
+  "files": [
+    {
+      "path": "01_用户访谈与服务边界.docx",
+      "kind": "docx",
+      "title": "青岚大学门户用户访谈与服务边界",
+      "bytes": 41195,
+      "sha256": "ada6f7b281c01b1c978839ed53313ea6d53a096dc1809b683374994a2f18d6e7"
+    },
+    {
+      "path": "02_立项汇报.pptx",
+      "kind": "pptx",
+      "title": "青岚校园服务门户立项汇报",
+      "bytes": 36231,
+      "sha256": "6e3eaf710ccf7a5d4972e7f7d1859155ad12e6635a33673b5663f33b5eaebdde"
+    },
+    {
+      "path": "03_服务预约原型.png",
+      "kind": "png",
+      "title": "场地预约提交页原型（业务文字也属于资料）",
+      "bytes": 138144,
+      "sha256": "829ce41376956ee92b645e5a6a7aef6378398ca9e275741a18d0c31333ae53a6"
+    },
+    {
+      "path": "04_办事规则混排.pdf",
+      "kind": "pdf",
+      "title": "青岚大学办事规则汇编（原生文本与扫描页混排）",
+      "bytes": 515346,
+      "sha256": "d805f495956badfbe5059b9a49a08152dd760ba671d28a4a6682f3537e9dae09"
+    },
+    {
+      "path": "05_服务与权限台账.xlsx",
+      "kind": "xlsx",
+      "title": "服务、权限与状态台账",
+      "bytes": 10552,
+      "sha256": "51b748cd7abe11bc303a3015bae4b3da254b9457a8384a1e4207ac3513b8ed3a"
+    },
+    {
+      "path": "06_需求评审结论.md",
+      "kind": "md",
+      "title": "最终需求评审结论 V1.2",
+      "bytes": 1808,
+      "sha256": "aa638c2c9bcc9311092669880086512d203f143e74c1eca3d248b1fc30e766d2"
+    }
+  ]
+}
